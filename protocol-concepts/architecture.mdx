@@ -1,0 +1,22 @@
+---
+title: Architecture
+description: 'Welcome to the home of your new documentation'
+---
+
+The SCEA is a SmartContract that lives on the EVM and stores records of escrow data, and also holds both native and ERC20 tokens.
+
+The memory model for the SCEA is shown below.
+
+![SCEA Memory Model (May 2024)](https://prod-files-secure.s3.us-west-2.amazonaws.com/d71729bd-3936-4a73-97f2-462207142a3e/b1ec78ea-cc11-4206-a9c7-dd03b06445df/SCEA_(1).jpg)
+
+SCEA Memory Model (May 2024)
+
+The model above shows the proposed SmartContract Escrow Account storage model. The storage has the following properties.
+
+1. **Owner:** the address of the merchant maker that owns the SCEA.
+2. **Initiator:** the address used by the platform for transaction initiation.
+3. **Mediator:** the address used by the platform for transaction mediation.
+4. **Escrow:** this is a 3-dimensional mapping that holds the record of funds that are currently locked in the SCEA and not available for spending. It is organized by token to make lookup faster. 
+    1. The top-level map is a mapping of tokens to order types (BUY or SELL), which are represented by integers as shown in the model.
+    2. The second-level map under the order type is a mapping of client addresses / order key to the value currently locked. The order key is important because in the event where the platform is integrated with third-party exchanges, the exchange’s liquidity address will most likely be shared by multiple users. The OrderID integer helps to uniquely distinguish sell orders initiated by each user from the third-party exchange.
+5. **LockBalance:** this tracks the total balance locked per token. Though this value can be computed on-the-fly by looping through the data in the Escrow, it can lead to the rapid accumulation of gas spent. This property can be incremented each time funds are locked, decremented when funds are unlocked.

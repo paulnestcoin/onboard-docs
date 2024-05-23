@@ -27,13 +27,18 @@
   },
   "tabs": [
     {
+      "name": "Contracts",
+      "url": "contracts"
+    },
+    {
       "name": "Onboard Exchange",
       "url": "onboard-exchange"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
     }
   ],
-  "primaryTab": {
-      "name": "Onboard Protocol"
-  },
   "anchors": [
     {
       "name": "Documentation",
@@ -51,10 +56,15 @@
       "url": "https://mintlify.com/blog"
     }
   ],
-  "topAnchor": {
-    "name": "Onboard Protocol"
-  },
   "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "quickstart",
+        "development"
+      ]
+    },
     {
       "group": "Get Started",
       "pages": [
@@ -68,63 +78,50 @@
       "pages": [
         "protocol-concepts/need-for-onboard",
         "protocol-concepts/comparison",
-        {
-          "group": "Use Cases",
-          "pages": [
-            "protocol-concepts/use-cases/overview",
-            "protocol-concepts/use-cases/on-off-ramping",
-            "protocol-concepts/features/crypto-swaps",
-            "protocol-concepts/features/nft-swaps",
-            "protocol-concepts/features/crypto-loans",
-            "protocol-concepts/features/marketplaces"
-          ]
-        }
+        "protocol-concepts/use-cases"
       ]
     },
     {
-      "group": "Core Concepts",
+      "group": "Essentials",
       "pages": [
-        "protocol-concepts/architecture",
-        {
-          "group": "Protocol Features",
-          "pages": [
-            "protocol-concepts/features/upgradeable",
-            "protocol-concepts/features/gasless",
-            "protocol-concepts/features/escrow-lifecycle",
-            "protocol-concepts/features/roles-responsibilities",
-            "protocol-concepts/features/escrow-mechanism"
-          ]
-        }
+        "essentials/markdown",
+        "essentials/code",
+        "essentials/images",
+        "essentials/settings",
+        "essentials/navigation",
+        "essentials/reusable-snippets"
       ]
     },
     {
-      "group": "Contracts",
+      "group": "Overview",
       "pages": [
-        "contracts/overview",
-        {
-          "group": "Technical Reference",
-          "pages": [
-            "contracts/factory",
-            "contracts/escrow",
-            "contracts/lookup",
-            "contracts/offramp",
-            "contracts/onramp",
-            "contracts/liquidity"
-          ]
-        }
+        "contracts/introduction"
       ]
     },
     {
-      "group": "Advanced Topics",
+      "group": "Concepts",
       "pages": [
-        "advanced/using-with-centralized-exchanges",
-        "advanced/security-considerations"
+        "contracts/introduction"
       ]
     },
     {
       "group": "Introduction",
       "pages": [
         "onboard-exchange/introduction"
+      ]
+    },
+    {
+      "group": "API Documentation",
+      "pages": [
+        "api-reference/introduction"
+      ]
+    },
+    {
+      "group": "Endpoint Examples",
+      "pages": [
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/delete"
       ]
     }
   ],
