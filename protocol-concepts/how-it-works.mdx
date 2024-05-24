@@ -2,66 +2,34 @@
 title: 'How the Escrow Works'
 ---
 
-A typical value exchange marketplace involves a buyer who wants to purchase assets and sellers offering those assets for sale. These parties interact through an intermediary platform, which provides discovery, trust, and mediation services.
-
-Traditionally, secure transactions in these marketplaces rely on a centralized escrow managed by the platform. However, this approach creates a single point of failure, raising concerns about insolvency, platform restrictions, or fraud.
-
-## The Smart Contract Escrow Account (SCEA)
-
-Onboard has developed a decentralized escrow system to enable value exchanges in a trustless, permissionless manner.
-
-This core idea behind this system is a Smart Contract Escrow Account (SCEA) created on the blockchain.
-
-### SCEA Key Functionalities
-
-- **Storage of assets:** store assets not locked in an ongoing transaction, similar an [externally-owned account](https://google.com). This is known as the `AvailableBalance`.
-- **Escrow Lock:** lock tokens being transacted during an ongoing exchange in the `LockedBalance`.
-- **Deposits & Withdrawals:** assets deposited directly into the address, or transferred after a transaction, are stored as `AvailableBalance`. the SCEA also enables withdrawal of this `AvailableBalance`
-
-There are a number of things to note with the SCEA:
-
 ### Escrow Creation
 
-1. The SCEA is created only once, and offers a persistent address, through which 
-2. Only one transacting party needs to create the SCEA, thereby having a persistent address through which they 
-3. SCEAs are usually created by 
-1. Only the market maker needs to create an SCEA, which is done by connecting their wallet and  will be done during their onboarding.
-2. The SCEA can be created by the TP's wallet directly or on behalf of the TP by the platform.
-3. The SCEA has the **owner** attribute which is the address of the TP that owns it, and a **mediator** attribute, which is the Onboard platform address for resolving disputes.
+The SCEA is created once for each liquidity provider (LP), providing a persistent address for their transactions on the platform.
 
-### Locking assets during exchanges
+The LP creates the escrow using their non-custodial wallet, which holds the owner EOA attribute on the SCEA. Two other EOA attributes are assigned to the SCEA at creation:
 
-#### Onramp Exchange
-
-For the purposes of this, we define an onramp as an exchange where an external buyer wants to purchase assets _stored_ (not locked) within the SCEA.
-
-- When an ONRAMP order is **initiated**, the quantity of crypto-asset in the order is "locked" in the SCEA of the TP and the system ensures that this is not more than the available token balance. Available balance is computed as the token balance less the total amount locked in escrow.
-- The buyer provides the asset / service being offered for the locked token outside the platform. On **confirmation** of the funds (fiat) by the TP, the locked funds are **released** and transferred to the customer's address.
-- On **cancellation**, the locked funds are **returned** and available to the TP by unlocking the funds in the SCEA escrow.
-- Ideally, for a BUY order, only the owner can "lock" assets for a given SCEA, however, the owner can grant the mediator the permission to lock funds. This for example will ensure BUY orders are not delayed by the TP's approval/acceptance.
+- **`Initiator`:** Responsible for order initiation and locking funds in escrow.
+- **`Mediator`:** Handles order confirmation and dispute resolution.
 
 
-#### Offramp Exchange
+### Locking assets during transactions
 
-For the purposes of this, we define an offramp as an exchange where an external seller wants to sell assets to the owner of an SCEA.
+#### Onramp Order
 
-- When an OFFRAMP order is **initiated**, the quantity of crypto-asset in the order is first sent to the TP's escrow account by the customer, the amount is then "locked" in the escrow and not available to the TP. In the case of ERC20 tokens, the customer has to approve the TP’s SCEA to spend the quantity they wish to offramp.
-- On **confirmation** of the funds (fiat) by the customer, the funds locked in the TP's escrow are then **released** to the TP by unlocking the funds in the SCEA
-- On **cancellation**, the locked funds are **returned** to the customer by unlocking the locked funds and transferring it to the customer's address.
-- The owner of the SCEA (TP) can withdraw funds from it at anytime, as long as the funds are not locked in an order i.e. only available balance can be withdrawn.
+For this documentation's purposes, we define an onramp as a transaction where an external buyer wants to purchase assets stored in the SCEA's `AvailableBalance` (i.e. assets not yet _locked_).
 
+- **Initiation:** The `owner` or `initiator` locks the specified quantity of crypto assets in the SCEA, ensuring it doesn't exceed the `AvailableBalance`, computed as the `Total balance - Total locked balance` for the token being transacted. The `owner` may grant the `initiator` permission to lock assets in order to ensure timely execution of onramp orders.
+- **Confirmation:** The buyer transfers the fiat or other asset being exchanged for the locked token outside the platform. Upon confirmation of receipt by the LP, the locked assets are released to the customer's address.
+- **Cancellation:** Locked funds are released from `LockBalance` and returned to the LP's `AvailableBalance`.
 
-![Escrow Interaction flow](https://nestcoin.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F01ac7a04-f959-4342-8e41-74095be4b320%2FOnboardV1-EscrowOptions_SmartContractVendor.drawio.png?table=block&id=d31d6eed-b885-4a59-bb9c-201ba9b49079&spaceId=d71729bd-3936-4a73-97f2-462207142a3e&width=2000&userId=&cache=v2)
+#### Offramp Order
 
+For this documentation's purposes, we define an offramp as a transaction where an external seller wants to sell assets in their non-custodial wallet to the Liquidity Provider.
 
+- **Initiation:** The customer sends the specified quantity of crypto assets to the LP's SCEA, locking the amount in the escrow. For `ERC-20` tokens, the customer must approve the LP’s SCEA to spend the quantity they wish to offramp.
+- **Confirmation:** The seller (LP in this case) transfers the fiat or other asset being exchanged for the locked token outside the platform. Upon confirmation of receipt by the customer, the locked assets in the LP's SCEA are released to the LP's `AvailableBalance`.
+- **Cancellation:** Locked funds are released from `LockBalance` and returned to the customer's non-custodial wallet address.
 
-
----
-
-Besides locking funds being transacted  The account holds assets that are available to be sold by market makers, as well as assets received by market makers.
-
-The SCEA is typically created by one of the transacting parties  the market maker providing  they connect their wallet for the network for which they want to create an account, assuming we support multiple networks. Secondly, we take them through the process to create the escrow account. The partners will then be prompted by their wallet to approve the account creation transaction.
-
-The account holds assets that are available to be sold by market makers, as well as assets received by market makers.
-
- and the record of funds locked in Escrow. 
+<Frame caption="Escrow Interaction Flow">
+    <img src="https://nestcoin.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F01ac7a04-f959-4342-8e41-74095be4b320%2FOnboardV1-EscrowOptions_SmartContractVendor.drawio.png?table=block&id=d31d6eed-b885-4a59-bb9c-201ba9b49079&spaceId=d71729bd-3936-4a73-97f2-462207142a3e&width=2000&userId=&cache=v2" />
+</Frame>

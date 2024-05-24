@@ -75,8 +75,9 @@
     {
       "group": "Protocol Concepts",
       "pages": [
-        "protocol-concepts/how-it-works",
+        "protocol-concepts/scea-overview",
         "protocol-concepts/participants",
+        "protocol-concepts/how-it-works",
         "protocol-concepts/architecture",
         {
           "group": "Protocol Features",
@@ -86,7 +87,8 @@
             "protocol-concepts/features/fees",
             "protocol-concepts/features/evm-compatibility"
           ]
-        }
+        },
+        "protocol-concepts/cost-of-transactions"
       ]
     },
     {

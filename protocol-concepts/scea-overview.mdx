@@ -1,0 +1,26 @@
+---
+title: 'SCEA Overview'
+---
+
+A typical value exchange marketplace involves a buyer who wants to purchase assets and sellers offering those assets for sale. These parties interact through an intermediary platform, which provides discovery, trust, and mediation services.
+
+Traditionally, secure transactions in these marketplaces rely on a centralized escrow managed by the platform. However, this approach creates a single point of failure, raising concerns about insolvency, platform restrictions, or fraud.
+
+## The Smart Contract Escrow Account (SCEA)
+
+Onboard has developed a decentralized escrow system to enable value exchanges in a trustless, permissionless manner.
+
+This core idea behind this system is a Smart Contract Escrow Account (SCEA) created on the blockchain.
+
+### SCEA Key Functionalities
+
+- **Storage of assets:** store assets not locked in an ongoing transaction, similar an [externally-owned account](https://google.com). This is known as the `AvailableBalance`.
+- **Escrow Lock:** lock tokens being transacted during an ongoing exchange in the `LockedBalance`.
+- **Deposits & Withdrawals:** assets deposited directly into the address, or transferred after a transaction, are stored as `AvailableBalance`. The owner of the SCEA can withdraw this `AvailableBalance` at anytime.
+
+There are a number of things to note with the SCEA:
+
+- [Human Participants](/protocol-concepts/participants)
+- [How the Escrow Works](/protocol-concepts/how-it-works)
+
+---
