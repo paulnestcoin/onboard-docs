@@ -79,8 +79,7 @@
           "pages": [
             "protocol-concepts/features/initiator-mediator",
             "protocol-concepts/features/gasless",
-            "protocol-concepts/features/fees",
-            "protocol-concepts/features/evm-compatibility"
+            "protocol-concepts/features/fees"
           ]
         },
         "protocol-concepts/cost-of-transactions"
