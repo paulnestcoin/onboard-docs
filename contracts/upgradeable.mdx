@@ -2,19 +2,26 @@
 title: Upgradeable Contracts
 ---
 
+<Note>
 When designing smart contracts, the decision between upgradeable and non-upgradeable contracts often presents a trade-off between flexibility and immutability.
 
 While upgradeable contracts can be updated over time, they come at the expense of a trust risk -  that no party would be able to change the behavior of the protocol in any way. On the flip side, non-upgradeable contracts provide immutability and certainty, but at the expense of adaptability, which is crucial in the fast-changing Web3 environment.
+</Note>
 
-While designing the Onboard Protocol’s escrow mechanism, we wanted to strike a balance and trust, ensuring the protocol can easily support new features & optimizations, while minimizing the trust risk associated with upgradeable contracts. 
 
-Here's how it works:
+While designing the Protocol’s escrow mechanism, we wanted to strike a balance and trust, ensuring the protocol can easily support new features & optimizations, while minimizing the trust risk associated with upgradeable contracts. 
 
-**Dynamic lookup mechanism:** The `SCEAContract` itself is not upgradeable and does not contain implementation logic. Instead, it relies on a dynamic lookup contract to map to the `SCEAImplementationLogic` contract where the logic resides, and which is upgradeable.
+## How it works:
+
+### Dynamic lookup mechanism
+
+The `SCEAContract` itself is not upgradeable and does not contain implementation logic. Instead, it relies on a dynamic lookup contract to map to the `SCEAImplementationLogic` contract where the logic resides, and which is upgradeable.
 
 When the escrow contract needs to execute specific logic, it queries the `SCEAImplementationLookUp` contract to retrieve the corresponding `SCEAImplementationLogic` contract.
 
-**Proxy execution:** The escrow contract then executes the logic retrieved from the implementation contract in the context of its own storage, effectively acting as a proxy. 
+### Proxy execution
+
+The escrow contract then executes the logic retrieved from the implementation contract in the context of its own storage, effectively acting as a proxy. 
 
 This ensures that updates or modifications are applied to the `SCEAImplementationLogic` contract rather than the `SCEAContract` contract, thus making the escrow contract immutable.
 

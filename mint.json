@@ -5,7 +5,7 @@
     "dark": "https://assets-global.website-files.com/64c960739bf6482a11b90547/64c963abcb7a379379b36b68_logo-white.svg",
     "light": "/logo/onboard.svg"
   },
-  "favicon": "https://app.onboard.xyz/apple-touch-icon.png",
+  "favicon": "/favicon.svg",
   "colors": {
     "primary": "#5723f4",
     "light": "#00cfff",
@@ -81,30 +81,19 @@
         {
           "group": "Protocol Features",
           "pages": [
-            "protocol-concepts/features/upgradeable",
-            "protocol-concepts/features/gasless",
             "protocol-concepts/features/initiator-mediator",
+            "protocol-concepts/features/gasless",
+            "protocol-concepts/features/fees",
             "protocol-concepts/features/evm-compatibility"
           ]
         }
       ]
     },
     {
-      "group": "Building on Onboard",
+      "group": "Smart Contracts",
       "pages": [
-        "building-on-onboard/protocol-contracts",
-        "building-on-onboard/trading-fees",
-        {
-          "group": "Smart Contract Integration",
-          "pages": [
-            "contracts/factory",
-            "contracts/escrow",
-            "contracts/lookup",
-            "contracts/offramp",
-            "contracts/onramp",
-            "contracts/liquidity"
-          ]
-        },
+        "contracts/upgradeable",
+        "contracts/list-of-contracts",
         {
           "group": "Technical Reference",
           "pages": [
@@ -116,6 +105,19 @@
             "contracts/liquidity"
           ]
         }
+      ]
+    },
+    {
+      "group": "Guides & Tutorials",
+      "pages": [
+        {
+          "group": "Smart Contract Integration",
+          "pages": [
+            "guides/quick-start-guide",
+            "guides/integration-via-ethers-js"
+          ]
+        },
+        "guides/tutorial-create-a-trading-marketplace"
       ]
     },
     {

@@ -1,0 +1,57 @@
+---
+title: Fees & Fee Recipient
+---
+
+The protocol includes a flexible fee structure that developers can leverage when creating off-ramp orders. Fees are a crucial part of the transaction process, and this implementation ensures that they are handled transparently and flexibly.
+
+## Fee Parameters in Trade Creation
+
+The following code snippet illustrates how fee parameters are supplied during the creation of off-ramp orders in the `EscrowOfframp` contract:
+
+```solidity
+
+// SPDX-License-Identifier: UNLICENSED
+
+pragma solidity ^0.8.25;
+
+contract EscrowOfframp {
+
+    struct ClientArgs {
+        address client;
+    }
+
+    /// @notice This will lock `_amount` in escrow
+    /// @param _amount coin amount to off ramp
+    /// @param _tradeFee Onboard trade fee
+    function createOfframpOrder(uint256 _amount, uint256 _tradeFee ) external {
+        // Create off-ramp order and keep record of trade fee
+        // Lock trade amount in escrow
+    }
+
+    /// @notice It is expected that order amount has been pre-approved by customer to escrow account
+    /// @param _token ERC20 token address
+    /// @param _amount coin amount to off ramp
+    function createOfframpOrder(IERC20 _token, uint256 _amount, uint256 _tradeFee ) external {
+        // Verify if amount is approved by user to be locked in escrow
+        // Keep trade record including the fee to be charged
+        // Lock trade amount in escrow
+    }
+
+    // @notice Mediator confirms order in dispute cases
+    function confirmOfframpOrder(ClientArgs memory args) external returns(bool success) {
+        // Ensure that order exists for args client
+        // Execute transfer of asset to merchant escrow account
+        // Transfer trade fee to designated fee recipient address
+    }
+}
+
+```
+
+The `createOfframpOrder` function allows users to lock a specified amount of tokens in escrow.
+
+During the creation of the off-ramp order, a `_tradeFee` parameter is supplied. This fee is recorded and associated with the transaction. There are two versions of this function:
+
+- One that handles native tokens.
+- One that deals with ERC20 tokens, ensuring the amount is pre-approved for transfer to the escrow account.
+
+During order processing, the `confirmOfframpOrder` function ensures the existence of the order for the specified client and executes the transfer of assets to the merchant's escrow account. The `_tradeFee` is then transferred to a designated fee recipient address, ensuring that fees are collected appropriately.

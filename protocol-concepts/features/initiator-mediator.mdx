@@ -6,16 +6,16 @@ In the protocol's original design, the platform's interaction with the SCEA was 
 
 However, having a single entity responsible for both order initiation and mediation introduced risks of overexposure and overdependence on a single point of failure.
 
-**Improved Decentralization and Security**
+## Separation of Concerns
 
 To enhance the system's security and decentralization, two separate entities, each with different private keys, are now responsible for initiation and mediation respectively.
 
-1. **`Initiator`**:
+### `Initiator`
     - The initiator is now solely responsible for order initiation and locking funds in escrow.
     - Users grant the initiator permission to initiate transactions and lock their funds in escrow.
     - This separation ensures that the initiator’s actions are limited to the transaction initiation phase, reducing the risk of overexposure.
 
-2. **`Mediator`**:
+### `Mediator`
     - The mediator handles order confirmation and the resolution of disputes.
     - In cases of disputes, the mediator confirms the orders and transfers the tokens to the appropriate party (buyer or seller).
     - The mediator operates with a separate private key, ensuring a clear distinction and independence from the initiator.
