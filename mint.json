@@ -28,7 +28,7 @@
   "tabs": [
     {
       "name": "Onboard Exchange",
-      "url": "onboard-exchange"
+      "url": "https://docs.onboardpay.co"
     }
   ],
   "primaryTab": {
@@ -38,17 +38,12 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "/"
     },
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "/"
     }
   ],
   "topAnchor": {
@@ -127,12 +122,6 @@
       "pages": [
         "advanced/using-with-centralized-exchanges",
         "advanced/security-considerations"
-      ]
-    },
-    {
-      "group": "Introduction",
-      "pages": [
-        "onboard-exchange/introduction"
       ]
     }
   ],
