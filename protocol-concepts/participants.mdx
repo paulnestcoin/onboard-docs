@@ -1,0 +1,34 @@
+---
+title: Human Participants
+---
+
+The Onboard ecosystem is mainly comprised of three types of users: _liquidity providers_, _customers_, and _developers_, all of whom interact with the SCEA.
+
+![human-participants](/images/human-participants.png)
+
+## Liquidity Providers
+
+Liquidity providers are individuals or entities that supply liquidity for assets traded on marketplaces leveraging the Onboard Protocol. These LPs, often merchants, are incentivized to provide liquidity to profit from transaction spreads (as they are able to set their own P2P trade terms).
+
+- **Creation and Funding:** LPs create the SCEA using their non-custodial wallets and can deposit ERC-20 and native tokens into the SCEA's `AvailableBalance`.
+- **Authorization:** The LP’s wallet holds the `owner` attribute on the SCEA, allowing them to authorize token transfers within the SCEA.
+
+## Developers
+
+Developers integrate with Onboard Protocol's smart contracts to create innovative trading interfaces and retail experiences. The open-source nature of Onboard allows for a variety of applications covering several [use cases](/use-cases).
+
+- **Roles:** A developer's dApp can hold `initiator` and `mediator` attributes on the SCEA.
+    - `Initiator`: Initiates the escrow locking process on behalf of the LP during a transaction.
+    - `Mediator`: Manages transaction completion and dispute resolution on behalf of both parties.
+- **Permissions:** LPs can grant the `initiator` permission to lock funds on their behalf when transactions begin.
+
+## Customers
+
+Customers use the developer's platform to buy or sell tokens for cash or other assets, with a fixed fee set by the developer, which is sent to a designated address.
+
+- **When selling:** Tokens are transferred from the customer's non-custodial wallet to the SCEA's `LockedBalance` and moved to `AvailableBalance` upon transaction completion.
+- **When buying:** Tokens from the LP's `LockedBalance` are transferred to the customer's wallet once the transaction is finalized.
+
+---
+
+These interactions between liquidity providers, customers, and developers create a positive feedback loop, enabling permissionless marketplaces where assets can be exchanged without barriers.

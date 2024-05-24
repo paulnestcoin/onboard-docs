@@ -1,0 +1,56 @@
+---
+title: Upgradeable Contracts
+---
+
+When designing smart contracts, the decision between upgradeable and non-upgradeable contracts often presents a trade-off between flexibility and immutability.
+
+While upgradeable contracts can be updated over time, they come at the expense of a trust risk -  that no party would be able to change the behavior of the protocol in any way. On the flip side, non-upgradeable contracts provide immutability and certainty, but at the expense of adaptability, which is crucial in the fast-changing Web3 environment.
+
+While designing the Onboard Protocol’s escrow mechanism, we wanted to strike a balance and trust, ensuring the protocol can easily support new features & optimizations, while minimizing the trust risk associated with upgradeable contracts. 
+
+Here's how it works:
+
+**Dynamic lookup mechanism:** The `SCEAContract` itself is not upgradeable and does not contain implementation logic. Instead, it relies on a dynamic lookup contract to map to the `SCEAImplementationLogic` contract where the logic resides, and which is upgradeable.
+
+When the escrow contract needs to execute specific logic, it queries the `SCEAImplementationLookUp` contract to retrieve the corresponding `SCEAImplementationLogic` contract.
+
+**Proxy execution:** The escrow contract then executes the logic retrieved from the implementation contract in the context of its own storage, effectively acting as a proxy. 
+
+This ensures that updates or modifications are applied to the `SCEAImplementationLogic` contract rather than the `SCEAContract` contract, thus making the escrow contract immutable.
+
+To further mitigate the trust risk and ensure the integrity of the Onboard Protocol, any upgrades to the implementation logic or any other parts of the protocol would undergo a third-party audit before being released.
+
+![Upgradeable SCEA](https://nestcoin.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F7ade2f92-40a3-4837-83b1-bbbb01ff315b%2FOnboard-Architectures-Page-3.drawio.png?table=block&id=f35b21c6-c8ee-4f95-b23c-975a2daf5fa9&spaceId=d71729bd-3936-4a73-97f2-462207142a3e&width=2000&userId=&cache=v2)
+
+## Code Outline
+
+```solidity
+class Factory implements Ownable {
+
+     storageLocation = 0x020202020202020202020...;
+      
+     fallback() { 
+        address = load(storageLocation); //factory implementation contract
+        delegatecall(address, parameters);
+     }
+}
+
+
+class SCEAImplementationLookUp implements Ownable {
+     storageLocation = 0x020202020202020202020...;
+     getSceaImplementationAddress() {
+        address = load(storageLocation); //factory implementation contract
+        return address;
+     }
+}
+
+
+class SCEAContract { // several instances
+
+   fallback() {
+      implAddress = SCEAImplementationLookUp().getSceaImplementationAddress();
+      delegatecall(implAddress, methodName, ...parameters);
+   }
+
+}
+```

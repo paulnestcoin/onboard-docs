@@ -2,17 +2,17 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Onboard Protocol",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "https://assets-global.website-files.com/64c960739bf6482a11b90547/64c963abcb7a379379b36b68_logo-white.svg",
+    "light": "/logo/onboard.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://app.onboard.xyz/apple-touch-icon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#5723f4",
+    "light": "#00cfff",
+    "dark": "#5723f4",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#5723f4",
+      "to": "#00cfff"
     }
   },
   "topbarLinks": [
@@ -56,51 +56,55 @@
   },
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "General",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Core Concepts",
-      "pages": [
-        "protocol-concepts/need-for-onboard",
-        "protocol-concepts/comparison",
+        "the-protocol",
         {
           "group": "Use Cases",
           "pages": [
-            "protocol-concepts/use-cases/overview",
-            "protocol-concepts/use-cases/on-off-ramping",
-            "protocol-concepts/features/crypto-swaps",
-            "protocol-concepts/features/nft-swaps",
-            "protocol-concepts/features/crypto-loans",
-            "protocol-concepts/features/marketplaces"
+            "use-cases/overview",
+            "use-cases/on-off-ramps",
+            "use-cases/crypto-nft-swaps",
+            "use-cases/marketplaces",
+            "use-cases/lending"
           ]
         }
       ]
     },
     {
-      "group": "Core Concepts",
+      "group": "Protocol Concepts",
       "pages": [
+        "protocol-concepts/how-it-works",
+        "protocol-concepts/participants",
         "protocol-concepts/architecture",
         {
           "group": "Protocol Features",
           "pages": [
             "protocol-concepts/features/upgradeable",
             "protocol-concepts/features/gasless",
-            "protocol-concepts/features/escrow-lifecycle",
-            "protocol-concepts/features/roles-responsibilities",
-            "protocol-concepts/features/escrow-mechanism"
+            "protocol-concepts/features/initiator-mediator",
+            "protocol-concepts/features/evm-compatibility"
           ]
         }
       ]
     },
     {
-      "group": "Contracts",
+      "group": "Building on Onboard",
       "pages": [
-        "contracts/overview",
+        "building-on-onboard/protocol-contracts",
+        "building-on-onboard/trading-fees",
+        {
+          "group": "Smart Contract Integration",
+          "pages": [
+            "contracts/factory",
+            "contracts/escrow",
+            "contracts/lookup",
+            "contracts/offramp",
+            "contracts/onramp",
+            "contracts/liquidity"
+          ]
+        },
         {
           "group": "Technical Reference",
           "pages": [
@@ -129,8 +133,9 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/OnboardGlobal",
+    "instagram": "https://www.instagram.com/onboardglobal_",
+    "github": "https://github.com/OnboardGlobal",
+    "warpcast": "https://www.warpcast.com/onboard"
   }
 }
