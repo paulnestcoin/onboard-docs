@@ -2,16 +2,16 @@
 title: 'Cost of Onboard Transactions'
 ---
 
-This section covers interactions with the SCEA that alter the state of the blockchain network i.e. change a contract or balance of an account on the network.
+This section covers SCEA interactions that alter the state of the blockchain network i.e. change a contract or balance of an account on the network.
 
-These transactions carry a cost in gas fees, which are either borne by any of the transacting parties, or the platform.
+These transactions carry a cost in gas fees, which are either borne by the dApp platform, or one/both of the transacting parties (buyer/seller).
 
 <Note>
-    The gas prices used in this section are based on a gas cost of *0.25 Gwei* on the Base network, and *100 Gwei* on the Ethereum network. However, gas prices on the Ethereum network vary widely, potentially surging up to 5x during periods of high congestion, and decreasing by 10x when there is low traffic.
+    The gas prices used here are based on a gas cost of *0.25 Gwei* on the `Base` network, and *100 Gwei* on the `Ethereum` network. However, gas prices on Ethereum vary widely, potentially surging up to 5x during periods of high congestion, and decreasing by 10x during low traffic.
 
-    USD prices of the assets are based on the price as at the time of this writing, ETH is trading at around **$2,962.70**.
+    USD prices of the assets are based on the price as at the time of this writing (April 2024), `ETH` is trading at around **$2,962.70**.
 
-    The token used for gas payment on a network is referred to as the native token, i.e. ETH is the native token on Base and Ethereum.
+    The token used for gas payment on a network is referred to as the native token, i.e. `ETH` is the native token on `Base` and `Ethereum`.
     
     These values will be used throughout this section.
 </Note>
@@ -22,67 +22,71 @@ These transactions carry a cost in gas fees, which are either borne by any of th
 <Accordion title="Point 1: Escrow Account Creation">
     Only one transaction is required for account creation, which is the transaction to call the SmartContract Escrow Account creation factory function.
     
-    It is estimated that on an EVM, this can cost up **250,000 Gas units**, which is about 0.0000625 ETH ($0.19) on Base and 0.025 ETH (~$74.37) on Ethereum network.
+    It is estimated that on an EVM, this can cost up **250,000 Gas units**, which is about `0.0000625 ETH (0.19 USD)` on Base, and `0.025 ETH (74.37 USD)` on Ethereum network.
 </Accordion>
 <Accordion title="Point 2: On-ramp order (buying crypto)">
+    As explained previously, an onramp is a transaction where an external buyer wants to purchase assets stored in the SCEA's `AvailableBalance` (i.e. assets not yet _locked_).
+
     While there are 3 possible blockchain transactions that can occur during an on-ramp transaction, for a typical transaction, only 2 of those transactions will ever be processed.
 
-    1. **Lock Market Maker’s Funds in Escrow Account:** before an exchange can occur between the buyer and the seller, the seller's crypto funds have to be locked in the escrow account. In this case, the seller is the market maker. This transaction involves getting the token balance, locked balance and changing the state of the escrow data in the SCEA.
+    1. **Lock Liquidity Partner’s Funds in SCEA:** before an exchange can occur between the buyer and the seller, the seller's crypto funds have to be locked in the escrow account. In this case, the seller is the LP. This transaction involves getting the token balance, locked balance and changing the state of the escrow data in the SCEA.
         
         There are two possible scenarios here:
         
-        1. **No Auto-Escrow:** The market maker has not authorized the mediator (usually the platform integrating the protocol) to lock funds on their behalf. In this case, the buyer has to wait for the market maker to sign and send the transaction before the funds can be marked as locked.
-        2. **Auto-Escrow Enabled:** The market maker has authorized the mediator to lock funds on their behalf. In this case, the mediator will be responsible for sending the transaction to the blockchain.
+        1. **No Auto-Escrow:** The LP has not authorized the `initiator` (usually the platform integrating the protocol) to lock funds on their behalf. In this case, the buyer has to wait for the LP to sign and send the transaction (paying gas fees) before the assets can be locked.
+        2. **Auto-Escrow Enabled:** The LP has authorized the `initiator` to lock funds on their behalf. In this case, the mediator will be responsible for sending the transaction to the blockchain, and paying the gas fee.
         
-        This is estimated to cost as much as **60,000 Gas units** to complete, which is roughly about 0.000015 ETH ($0.044) on Base and 0.006 ETH ($17.85) on Ethereum.
+        This is estimated to cost as much as **60,000 Gas units** to complete, which is roughly about `0.000015 ETH (0.044 USD)` on Base and `0.006 ETH (17.85 USD)` on Ethereum.
         
-    2. **Return Funds to the Market Maker:** If the buyer fails to complete the order, or if a dispute is filed and determined in the seller’s favor, then funds have to be unlocked and returned to the market maker’s account, as part of their available balance (which can be withdrawn at-will).
+    2. **Return Funds to the LP:** If the buyer fails to complete the order, or if a dispute is filed and determined in the seller’s favor, then funds have to be unlocked and returned to the LP’s account, as part of their `AvailableBalance` (which can be withdrawn at-will).
         
         This transaction involves changing the state of the escrow data in the SCEA only. The cancellation can be initiated by the buyer or by the mediator (in the case of a dispute).
         
-        This is estimated cost around 30,000 Gas units, which comes to 0.00015 BNB ($0.084) on BSC, and 0.003 ETH ($8.92).
+        This is estimated cost around 30,000 Gas units, which comes to `0.00015 BNB ($0.084)` on BSC, and `0.003 ETH ($8.92)` on Ethereum.
         
 
     3. **Releasing Funds to the Buyer:** When the seller confirms that they've received the funds paid to them by the buyer, the funds need to be released to the customer's address as specified at the beginning of the order. 
         
-        This transaction involves changing the escrow data state in the SCEA and  performing an ERC20 token transfer to the buyer. This transaction can be initiated by the market maker or the mediator (in the case of a dispute).
+        This transaction involves changing the escrow data state in the SCEA and performing an ERC20 token transfer to the buyer. This transaction can be initiated by the LP or the mediator (in the case of a dispute).
         
-        This transaction is estimated to cost around 90,000 - 100,000 Gas units, depending on the token being transacted. This would incur a maximum value of about 0.0005 BNB ($0.28) on BSC and 0.01 ETH (~$29.75) on the Ethereum network.
+        This transaction is estimated to cost around 90,000 - 100,000 Gas units, depending on the token being transacted. This would incur a maximum value of about `0.0005 BNB ($0.28)` on BSC and `0.01 ETH (~$29.75)` on the Ethereum network.
 </Accordion>
 <Accordion title="Point 3: Off-ramp order (selling crypto)">
-    Off-ramping i.e. a SELL order, is slightly more complex than on-ramping. As described in the flow for the SCEA, during a Sell order, the crypto is sent to the market maker’s escrow account from the seller’s wallet (EOA) for escrow.
+    Off-ramping i.e. a Sell order, is slightly more complex than on-ramping. As described in the [flow for the SCEA](/protocol-concepts/how-it-works), during a Sell order, the crypto is sent to the LP’s escrow account from the seller’s wallet (EOA) for escrow.
 
-    There are 4 possible transactions for off-ramping, although, a typical order will only have 3. When selling a native token however, only 2 transactions may be required.
+    There are 4 possible transactions for off-ramping, **although, a typical order will only have 3**.
+    
+    <Note>When selling a native token however, only 2 transactions may be required.</Note>
 
     1. **Spend Approval:** the customer has to first grant approval to the SCEA to spend the exact amount needed for the order. This is a standard part of the ERC20/BEP20 specification, as implemented by several protocols. 
         
-        The risk of granting spend approval to the SCEA is minimal because the SCEA is not an externally owned account, hence, the escrow account owner (market maker) is unable to spend the funds directly from the customer's wallet.
+        The risk of granting spend approval to the SCEA is minimal because the SCEA is not an externally owned account, hence, the escrow account owner (LP) is unable to spend the funds directly from the customer's wallet.
         
-        A typical ERC20 transaction costs around **50,000 gas units**, hence, the approval fee is estimated to be 0.00025 BNB ($0.14) on BSC and 0.005 ETH (~$14.87) on the Ethereum network.
+        A typical ERC20 transaction costs around **50,000 gas units**, hence, the approval fee is estimated to be `0.00025 BNB ($0.14)` on BSC and `0.005 ETH (~$14.87)` on the Ethereum network.
         
 
     2. **Transfer to Escrow:** after funds are approved for spending, the funds need to be locked in the escrow account. This process involves checking that allowance has been granted to the SCEA, transferring the specified amount to the SCEA, and locking the same amount. 
         
-        This is estimated to cost about **100,000 Gas units**, which brings the cost of transactions to about 0.0005 BNB ($0.28) on BSC and 0.01 ETH (~$29.75) on Ethereum network.
+        This is estimated to cost about **100,000 Gas units**, which brings the cost of transactions to about `0.0005 BNB ($0.28)` on BSC and `0.01 ETH (~$29.75)` on Ethereum network.
         
 
-    3. **Refunding Funds to the seller (customer):** if the market maker fails to complete the order, or if a dispute is filed and determined in the seller’s favor, then funds have to be returned to the customer's wallet address. 
+    3. **Refunding Funds to the seller (customer):** if the LP fails to complete the order, or if a dispute is filed and determined in the seller’s favor, then funds have to be returned to the customer's wallet address. 
         
         This transaction involves changing the escrow data state in the SCEA and performing an ERC20 token transfer back to the customer. This transaction can be initiated by the TP or the mediator. 
         
-        This transaction is estimated to cost around **90,000 - 100,000 Gas units**, depending on the token involved. This would incur a maximum value of about 0.0005 BNB ($0.28) on BSC and 0.01 ETH (~$29.75) on the Ethereum network.
+        This transaction is estimated to cost around **90,000 - 100,000 Gas units**, depending on the token involved. This would incur a maximum value of about `0.0005 BNB ($0.28)` on BSC and `0.01 ETH (~$29.75)` on the Ethereum network.
         
 
-    4. **Releasing Funds to the buyer (market maker):**  When the seller confirms that they've received the funds paid to them by the buyer, the funds will be released to the market maker as part of their Available Balance within the SCEA. This transaction involves changing the state of the escrow data in the SCEA only, and can be initiated by the seller or by the mediator.
+    4. **Releasing Funds to the buyer (LP):**  When the seller confirms that they've received the funds paid to them by the buyer, the funds will be released to the LP as part of their `AvailableBalance` within the SCEA. This transaction involves changing the state of the escrow data in the SCEA only, and can be initiated by the seller or by the mediator.
         
-        This is estimated to cost only around **30,000 Gas units**, which is 0.00015 BNB ($0.084) on BSC, and 0.003 ETH ($8.92). 
+        This is estimated to cost only around **30,000 Gas units**, which is `0.00015 BNB ($0.084)` on BSC, and `0.003 ETH ($8.92)`. 
 </Accordion>
 <Accordion title="Point 4: Withdrawals from Escrow">
-    As explained previously, the owner of the escrow account (typically the market maker) can withdraw any **Available Balance** not locked in an order from their escrow account. The security design of the protocol ensures that withdrawals can only be done to the owner’s original wallet address used to create the SCEA.
+    As explained previously, the owner of the escrow account (typically the LP) can withdraw any `AvailableBalance` not locked in an order from their escrow account. The security design of the protocol ensures that withdrawals can only be done to the owner’s original wallet address used to create the SCEA.
 
-    Only one transaction is needed to withdraw funds from the escrow account. This is the transaction that calls the `withdrawal` function of the escrow account. This checks the available balance, ensures it is equal or above the withdrawal amount requested, then performs a transfer of the selected token to the owner’s address. This transaction can be initiated by the owner or the mediator. 
+    Only one transaction is needed to withdraw funds from the escrow account. This is the transaction that calls the `withdrawal` function of the escrow account. This checks the `AvailableBalance`, ensures it is equal to or above the withdrawal amount requested, then performs a transfer of the selected token to the owner’s address. This transaction can be initiated by the owner or the mediator. 
 
-    This transaction is estimated to cost around 90,000 - 100,000 Gas units depending on the token involved, meaning the maximum value would be about 0.0005 BNB ($0.28) on BSC and 0.01 ETH (~$29.75) on the Ethereum network.
+    This transaction is estimated to cost around 90,000 - 100,000 Gas units depending on the token involved, meaning the maximum value would be about `0.0005 BNB ($0.28)` on BSC and `0.01 ETH (~$29.75)` on the Ethereum network.
 </Accordion>
 </AccordionGroup>
 

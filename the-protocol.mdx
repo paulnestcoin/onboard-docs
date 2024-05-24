@@ -4,9 +4,9 @@ title: Protocol Overview
 
 ## Introduction
 
-The Onboard Protocol is a non-custodial peer-to-peer (P2P) protocol that enables secure exchange of assets in a trustless and globally accessible manner. Via the Onboard Protocol, users can trade assets using their preferred self-custody crypto wallet, without the need for a centralized custodian to hold funds.
+Onboard Protocol is a non-custodial peer-to-peer (P2P) protocol that enables secure exchange of assets in a trustless and globally accessible manner. Via Onboard, users can trade assets using their preferred self-custody crypto wallet, without the need for a centralized custodian to hold funds.
 
-The core innovation enabling the protocol is a [Smart Contract Escrow Account](/protocol-concepts/scea-overview), which securely locks assets during a trade, and only releases these assets after the explicit approval of both buyer and seller, or in cases of disputes, a mediator.
+The protocol's core innovation is a [Smart Contract Escrow Account](/protocol-concepts/scea-overview), which securely locks assets during a trade, and only releases these assets after the explicit approval of both buyer and seller, or in cases of disputes, a mediator.
 
 The Onboard Protocol can be deployed on all [EVM-compatible chains](https://defillama.com/chains/EVM): `Ethereum`, `Base`, `BNB Smart Chain`, `Polygon`, among others.
 
@@ -24,27 +24,27 @@ Existing exchanges & ramps, especially custodial ones, have several limitations 
   <Accordion title="Geographical constraints">
     For many exchanges and on-ramps, setting up in new countries incurs significant time and effort, thereby excluding users from those countries. Additionally, exchanges may abruptly exit from certain jurisdictions, leaving users scrambling for alternatives.
     
-    Onboard’s permissionless protocol aims to eliminate geographical barriers to the on-chain economy. The protocol is entirely open for public use without restriction, is designed so that anyone with sufficient experience can easily set up a secure marketplace of buyers and sellers using the protocol.
+    In contrast, Onboard’s protocol is permissionless and open, and is designed so that anyone with sufficient experience can easily set up a secure marketplace of buyers and sellers.
     
     For example, the aforementioned Onboard Exchange recently spun up new marketplaces in Kenya, Uganda and Ghana in as little as 2 weeks.
   </Accordion>
   <Accordion title="Custodial risk">
     Centralized exchanges hold user funds, exposing users to the risk of exchange insolvency, frozen or lost funds.
     
-    Onboard’s non-custodial approach eliminates this risk and frees the developer from the liability of managing users’ funds. Even in cases of disputes, withdrawals can only be made to either buyer or seller, and not to 3rd party addresses.
+    Onboard’s non-custodial approach eliminates this risk and frees the developer from the liability of managing users’ funds. Even in cases of disputes, withdrawals can only be made to either the buyer or seller, and not to 3rd party addresses.
   </Accordion>
   <Accordion title="High fees">
     Crypto-to-fiat ramps that support self-custody wallets often charge prohibitive fees, especially for users of limited means in emerging markets.
     
-    The Onboard protocol adopts a peer-to-peer model, thus minimizing fees at the protocol level to gas fees paid to the blockchain network. Developers have the flexibility to charge additional fees, but are encouraged to maintain competitive pricing to encourage inclusion.
+    The Onboard protocol adopts a peer-to-peer model, therefore the only fees required at the protocol level are gas fees paid to the blockchain network. Developers have the flexibility to charge additional fees, but are encouraged to maintain competitive pricing to be more inclusive.
     
-    Recent updates to the Onboard protocol have introduced “gasless transactions”, which eliminates the need to pay for gas costs in the native token of the transacting network.
+    Recent updates to the Onboard protocol have introduced the concept of [gasless transactions](/protocol-concepts/features/gasless), which in most cases, eliminates the need for native tokens for gas fees.
   </Accordion>
   <Accordion title="Closed source & non-composable">
-    For developers building dApps targeting users from emerging markets, integrating on & off-ramping solutions is challenging. Besides the significant fees, existing solutions are closed-source and only offer integration at the API level, thus making them less flexible and harder to build upon. 
+    For dApps targeting users from emerging markets, integrating on & off-ramping solutions is challenging. Besides the significant fees, existing solutions are closed-source and only offer integration at the API level, thus making them less flexible to build on. 
     
     Contrast this to protocols like Uniswap, which demonstrate crypto’s inherent composability. Uniswap’s contracts can integrate with other modular protocols, thus unlocking new use cases.
     
-    Onboard Protocol adopts a similar modular approach, as it can be integrated at the protocol level within decentralized apps. Being EVM-compatible also ensures compatibility with a wide range of wallets. For Web2 & Web3 applications seeking to support onramps and offramps in their platforms, Onboard also offers an API that reduces the need for smart contract development.
+    Onboard Protocol adopts a similar modular approach, as it can be integrated at the protocol level within decentralized apps. Being EVM-based also ensures compatibility with a wide range of wallets.
   </Accordion>
 </AccordionGroup>

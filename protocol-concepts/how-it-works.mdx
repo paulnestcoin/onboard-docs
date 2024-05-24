@@ -2,7 +2,7 @@
 title: 'How the Escrow Works'
 ---
 
-### Escrow Creation
+## Escrow Creation
 
 The SCEA is created once for each liquidity provider (LP), providing a persistent address for their transactions on the platform.
 
@@ -12,9 +12,9 @@ The LP creates the escrow using their non-custodial wallet, which holds the owne
 - **`Mediator`:** Handles order confirmation and dispute resolution.
 
 
-### Locking assets during transactions
+## Locking assets during transactions
 
-#### Onramp Order
+### Onramp Order
 
 For this documentation's purposes, we define an onramp as a transaction where an external buyer wants to purchase assets stored in the SCEA's `AvailableBalance` (i.e. assets not yet _locked_).
 
@@ -22,7 +22,7 @@ For this documentation's purposes, we define an onramp as a transaction where an
 - **Confirmation:** The buyer transfers the fiat or other asset being exchanged for the locked token outside the platform. Upon confirmation of receipt by the LP, the locked assets are released to the customer's address.
 - **Cancellation:** Locked funds are released from `LockBalance` and returned to the LP's `AvailableBalance`.
 
-#### Offramp Order
+### Offramp Order
 
 For this documentation's purposes, we define an offramp as a transaction where an external seller wants to sell assets in their non-custodial wallet to the Liquidity Provider.
 

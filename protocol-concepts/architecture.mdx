@@ -16,9 +16,9 @@ The image above illustrates the SmartContract Escrow Account storage model. The 
 
 4. **`Escrow`:** this is a 3-dimensional mapping that holds the record of assets currently locked in the SCEA and unavailable for spending. It is organized by token to make lookup faster. 
     - **Top-level map:** Maps `Tokens` to `OrderTypes` (`BUY` or `SELL`), which are represented by integers.
-    - **Second-level map:** Under `OrderType`, maps either client addresses or order IDs to the locked value. For interactions with non-custodial wallets, the `ClientOrderKey` is a base 64 address.
+    - **Second-level map:** Under `OrderType`, maps either client addresses or order IDs to the locked value. For transactions via non-custodial wallets, the `ClientOrderKey` is a base 64 address.
     
         When integrated with [third-party custodial exchanges](/advanced-topics/use-with-custodial-exchanges), the exchange’s liquidity address might be shared by multiple users. In this case, the `OrderID` integer uniquely distinguishes Sell transactions initiated by each user from the third-party exchange.
     
     
-5. **`LockBalance`:** this tracks the total balance locked per token. Though this value can be computed on-the-fly by looping through the data in the Escrow, it can lead to the rapid accumulation of gas spent. This property can be incremented each time funds are locked, decremented when funds are unlocked.
+5. **`LockBalance`:** this tracks the total balance locked per token. Though this value can be computed on-the-fly by looping through the data in the Escrow, it can lead to the rapid accumulation of gas spent. This property can be incremented each time funds are locked, and decremented when funds are unlocked.
