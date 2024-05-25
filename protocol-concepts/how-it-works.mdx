@@ -16,7 +16,7 @@ The LP creates the escrow using their non-custodial wallet, which holds the owne
 
 ### Onramp Order
 
-For this documentation's purposes, we define an onramp as a transaction where an external buyer wants to purchase assets stored in the SCEA's `AvailableBalance` (i.e. assets not yet _locked_).
+An onramp is a transaction where an external buyer (customer) wants to purchase assets from the LP, stored in the SCEA's `AvailableBalance` (i.e. assets not locked in an order).
 
 - **Initiation:** The `owner` or `initiator` locks the specified quantity of crypto assets in the SCEA, ensuring it doesn't exceed the `AvailableBalance`, computed as the `Total balance - Total locked balance` for the token being transacted. The `owner` may grant the `initiator` permission to lock assets in order to ensure timely execution of onramp orders.
 - **Confirmation:** The buyer transfers the fiat or other asset being exchanged for the locked token outside the platform. Upon confirmation of receipt by the LP, the locked assets are released to the customer's address.
@@ -24,7 +24,7 @@ For this documentation's purposes, we define an onramp as a transaction where an
 
 ### Offramp Order
 
-For this documentation's purposes, we define an offramp as a transaction where an external seller wants to sell assets in their non-custodial wallet to the Liquidity Provider.
+An offramp is a transaction where an external seller (customer) wants to sell assets in their non-custodial wallet to the Liquidity Provider.
 
 - **Initiation:** The customer sends the specified quantity of crypto assets to the LP's SCEA, locking the amount in the escrow. For `ERC-20` tokens, the customer must approve the LP’s SCEA to spend the quantity they wish to offramp.
 - **Confirmation:** The seller (LP in this case) transfers the fiat or other asset being exchanged for the locked token outside the platform. Upon confirmation of receipt by the customer, the locked assets in the LP's SCEA are released to the LP's `AvailableBalance`.
