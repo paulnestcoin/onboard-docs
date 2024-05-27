@@ -1,0 +1,74 @@
+
+
+Introduction
+
+- Overview
+  - Key Features
+  - Use Cases
+  - Quick Start Guide
+
+
+  - Getting Started
+
+Getting Started
+Installing the SDK
+System Requirements
+Configuration
+Setting Up Permissions
+Initializing the Protocol
+
+Core Concepts
+
+- Technical Architecture
+- 
+- Escrow Lifecycle
+
+- Protocol Features
+  - Gasless Transactions
+    - EIP-2612 Integration
+    - Uniswap’s Permit2
+  - Escrow Mechanism
+    - Creating Off-Ramp Orders
+    - Managing Funds in Escrow
+  - Fee Structure
+    - Setting Trade Fees
+    - Handling Fee Recipients
+  - Roles and Responsibilities
+    - Initiator
+    - Mediator
+    - Market Maker
+    - Transacting User
+
+- Cost of Transactions
+
+
+Smart Contract Reference
+- Overview
+- List of Contracts
+  - Functions and Parameters
+  - Examples for Each Function
+
+
+Tutorials
+
+Creating Your First Off-Ramp Order
+Handling Disputes and Confirming Orders
+Integrating Onboard Protocol with Your DApp
+
+Advanced Topics
+
+- Security Considerations
+- Best Practices for Developers
+- Performance Optimization
+
+
+FAQ
+- General Questions
+- Troubleshooting
+- Common Issues and Solutions
+
+Community and Support
+
+- Getting Help
+- Contributing to Onboard
+- Links to Forums, Discord, GitHub, and Social Media
