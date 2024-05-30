@@ -1,0 +1,19 @@
+---
+title: 'Query Parameters'
+---
+
+Onboard Connect allows you to customize your users' trading experience by embedding specific trade parameters within the redirect link's query parameters. The table below describes these parameters.
+
+| Param            | Type | Required                                                     | Description         |
+| -------------------------| ---| ------------------------------------------------------------------------ | -----------------------  |
+tradeType | `String` | Yes| Specify the type of order you want to initiate.<br/><br/>**Available options:**<br/>  `Buy` (onramp) or `Sell` (offramp)|
+fiat | `String` | Yes| ISO code alpha 3 that specifies the fiat currency for the trade.<br/><br/>Use the [trade options endpoint](/api-reference/endpoint/create) to get the list of available fiat currencies|
+token | `String` | Yes| Token symbol for the crypto asset to be traded.<br/><br/>Use the [trade options endpoint](/api-reference/endpoint/create) to get the list of available tokens.|
+fiatAmount | `Number` | No| Amount your customer wants to trade, expressed in the fiat value.<br/><br/> It is recommended to set only one of `fiatAmount` or `tokenAmount`|
+tokenAmount | `Number` | No| Amount your customer wants to trade, expressed in the crypto value.<br/><br/> It is recommended to set only one of `fiatAmount` or `tokenAmount`|
+networkId | `String` | Yes| The blockchain network identifier or chain ID for the trade.<br/><br/> Use the [trade options endpoint](/api-reference/endpoint/create) to get the list of available networks.|
+paymentChannel | `String` | No| The preferred payment channel for the trade.<br/><br/> Use the [trade options endpoint](/api-reference/endpoint/create) to get the list of supported payment channels.|
+address | `String` | No| The blockchain address to be credited with token for `Buy` (onramp) trades.<br/><br/> If not provided, the customer will be required to connect their wallet to complete the trade.<br/><br/>For `Sell` (offramp) trades, users are always required to connect their wallets if not already connected.|
+email | `String` | No| Your customer's email address.|
+orderId | `Number` | No| Unique ID that enables you track the order easily on your platform.|
+autoselect | `Boolean` | No| Provide this flag to indicate if the best offer should be selected, or if a list of offers matching your trade parameters should be returned.<br/><br/>Defaults to `true`.|

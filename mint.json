@@ -23,12 +23,12 @@
   ],
   "topbarCtaButton": {
     "name": "Onboard",
-    "url": "https://developers.onboard.xyz"
+    "url": "https://onboard.xyz"
   },
   "tabs": [
     {
       "name": "Onboard Exchange",
-      "url": "https://docs.onboardpay.co"
+      "url": "onboard-exchange"
     }
   ],
   "primaryTab": {
@@ -43,7 +43,7 @@
     {
       "name": "Community",
       "icon": "slack",
-      "url": "/"
+      "url": "https://linktr.ee/onboardprotocol"
     }
   ],
   "topAnchor": {
@@ -106,6 +106,7 @@
     {
       "group": "Guides & Tutorials",
       "pages": [
+        "guides/overview",
         {
           "group": "Smart Contract Integration",
           "pages": [
@@ -121,6 +122,28 @@
       "pages": [
         "advanced/using-with-centralized-exchanges",
         "advanced/security-considerations"
+      ]
+    },
+    {
+      "group": "Welcome",
+      "pages": [
+        "onboard-exchange/introduction",
+        "onboard-exchange/need-for-exchange"
+      ]
+    },
+    {
+      "group": "Onboard Connect",
+      "pages": [
+        "onboard-exchange/connect/overview",
+        "onboard-exchange/connect/quick-start-guide",
+        "onboard-exchange/connect/query-parameters"
+      ]
+    },
+    {
+      "group": "Supported Tokens & Fiats",
+      "pages": [
+        "onboard-exchange/supported-networks-tokens",
+        "onboard-exchange/supported-currencies-payment-channels"
       ]
     }
   ],

@@ -1,0 +1,173 @@
+---
+title: 'Quick Start Integration'
+description: 'Get up & running with Onboard Connect'
+---
+
+In this quickstart, you'll learn how to integrate your Web3 wallet or dApp with Onboard Connect to provide easy and reliable onramps and offramps to your users.
+
+<Tip>
+**In a nutshell** <br/><br/>
+To support on & offramps using Connect, initiate a transaction using a redirect URL embedded with your API key and other trade parameters accessible from the Exchange API.
+</Tip>
+
+## Getting Started
+
+<Steps>
+  <Step title="Sign up to Connect">
+    Onboard Connect requires account activation to ensure a secure and compliant integration experience.  Here's how to get started:
+
+    - **Send an activation request:** Email our support team at [support@onboard.xyz](mailto:support@onboard.xyz). In your email, please specify your use case and provide details about your product.
+    - **Get set up quickly:** Our team will review your request and guide you through the next steps. Once approved, you'll receive access to your Business Dashboard.
+    
+    The [Business Dashboard](https://business.onboard.xyz/) is your central hub for:
+    - Generating your unique API key (used in the redirect link).
+    - Configuring fees & additional settings for your integration.
+    - Tracking your onramp and offramp transactions.
+  </Step>
+  <Step title="Obtain your API Key">
+    Log in to the Business Dashboard to generate & retrieve your API key. This key is a crucial component of the redirect link used to initiate transactions.
+  </Step>
+  <Step title="Build your redirect link">
+    The redirect link provides a simple and convenient on & offramp flow, allowing you to integrate Onboard without making major changes to your application.
+
+    ### Redirect link format
+
+    <CodeGroup>
+    ```bash Staging
+    https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>
+    ```
+    ```bash Production
+    https://external.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>
+    ```
+    </CodeGroup>
+
+    #### Explanation
+
+    - `<YOUR_API_KEY>`: Replace this placeholder with your actual API key obtained from the Business Dashboard.
+    - `product=web3`: This specifies the product type (web3 in this case).
+    - `<TRADE_QUERY_PARAMETERS>`: These are a set of required & optional parameters that allow you to control the onramp and offramp experience for your users. You'll find details about these parameters in the section [below](#query-parameters).
+
+    The redirect link resolves to a trade URL, through which an order can be initiated using the trade parameters specified in the request query.
+    
+    ### Mobile app integration
+    For mobile apps, the redirect link can be used within an embedded browser or webview component.
+
+    <AccordionGroup>
+        <Accordion title="🤖 Android">
+            To integrate Connect to your Android app, see the `Java` and `Kotlin` snippets below:
+
+            <CodeGroup>
+
+                ```java Java
+                import android.os.Bundle;
+                import android.webkit.WebSettings;
+                import android.webkit.WebView;
+                import androidx.appcompat.app.AppCompatActivity;
+
+                public class MainActivity extends AppCompatActivity {
+                    private WebView webView;
+
+                    @Override
+                    protected void onCreate(Bundle savedInstanceState) {
+                        super.onCreate(savedInstanceState);
+                        setContentView(R.layout.activity_main);
+
+                        webView = findViewById(R.id.webView);
+                        WebSettings webSettings = webView.getSettings();
+                        webSettings.setJavaScriptEnabled(true);
+
+                        // Load the URL
+                        webView.loadUrl("https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>");
+                    }
+                }
+                ```
+
+                ```kotlin Kotlin
+                import android.os.Bundle
+                import android.webkit.WebSettings
+                import android.webkit.WebView
+                import androidx.appcompat.app.AppCompatActivity
+
+                class MainActivity : AppCompatActivity() {
+                    private lateinit var webView: WebView
+
+                    override fun onCreate(savedInstanceState: Bundle?) {
+                        super.onCreate(savedInstanceState)
+                        setContentView(R.layout.activity_main)
+
+                        webView = findViewById(R.id.webView)
+                        val webSettings: WebSettings = webView.settings
+                        webSettings.javaScriptEnabled = true
+
+                        // Load the URL
+                        webView.loadUrl("https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>")
+                    }
+                }
+                ```
+
+            </CodeGroup>
+        </Accordion>
+        <Accordion title="🍏 iOS">
+            To integrate Connect to your iOS app, see the `Swift` and `Flutter` snippets below:
+
+            <CodeGroup>
+
+                ```swift Swift
+                import UIKit
+                import WebKit
+
+                class ViewController: UIViewController, WKNavigationDelegate {
+                    @IBOutlet var webView: WKWebView!
+
+                    override func viewDidLoad() {
+                        super.viewDidLoad()
+
+                        // Set the WKWebView navigation delegate
+                        webView.navigationDelegate = self
+
+                        // Load the URL
+                        if let url = URL(string: "https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>") {
+                            let request = URLRequest(url: url)
+                            webView.load(request)
+                        }
+                    }
+                }
+                ```
+
+                ```flutter Flutter
+                class WebViewExample extends StatefulWidget {
+                    @override
+                    _WebViewExampleState createState() => _WebViewExampleState();
+                }
+
+                class _WebViewExampleState extends State<WebViewExample> {
+                    final String url = "https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>";
+                    final Completer<WebViewController> _controller =
+                        Completer<WebViewController>();
+
+                    @override
+                    Widget build(BuildContext context) {
+                        return Scaffold(
+                            appBar: AppBar(
+                                title: Text("Onboard Test App"),
+                            ),
+                            body: WebView(
+                                initialUrl: url,
+                                onWebViewCreated: (WebViewController webViewController) {
+                                _controller.complete(webViewController);
+                                },
+                            ),
+                        );
+                    }
+                }
+                ```
+
+            </CodeGroup>
+        </Accordion>
+    </AccordionGroup>
+  </Step>
+</Steps>
+
+## What's Next?
+
+View the [query parameters](/onboard-exchange/connect/query-parameters) that allow you to customize your users' trading experience when using Connect.

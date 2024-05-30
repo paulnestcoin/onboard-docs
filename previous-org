@@ -1,3 +1,99 @@
+To add 
+
+- under Connect
+  - "onboard-exchange/connect/how-it-works"
+
+- after Connect
+
+{
+      "group": "mOps Integration",
+      "pages": [
+        "onboard-exchange/merchant-integrations/overview",
+        "onboard-exchange/merchant-integrations/quick-start-guide",
+        "onboard-exchange/merchant-integrations/how-it-works"
+      ]
+    },
+
+- after Supported Tokens & Fiats
+
+{
+      "group": "Exchange APIs",
+      "pages": [
+        "onboard-exchange/merchant-integrations/overview",
+        "onboard-exchange/merchant-integrations/quick-start-guide"
+      ]
+    }
+
+- to exchange overview page (after connect card)
+
+<Card
+    title="mOps Integration"
+    icon="screwdriver-wrench"
+    iconType="duotone"
+    href="/onboard-exchange/merchant-integration"
+  >
+    Leverage our API to automate crypto to fiat transactions on your platform.
+  </Card>
+
+- to exchange overview page (before getting started)
+
+## Sample Use Cases
+
+<Tabs>
+  <Tab title="💪 Onboard Connect">
+    ☝️ Welcome to the content that you can only see inside the first Tab.
+  </Tab>
+  <Tab title="💪 mOps Integrations">
+    ✌️ Here's content that's only inside the second Tab.
+  </Tab>
+</Tabs>
+
+
+Introduction ✅
+
+- About Exchange (summary)
+- brief description of two types of integrations (Onboard Connect & Merchant Integrations)
+- cards for the two types
+
+Connect > Overview
+
+- About Onboard Connect (summary)
+- Examples of use cases it can work with (and link to contact us)
+
+Connect > How Connect Works
+
+- brief description (its used in web browser)
+- Connect lifecycle (GIFs)
+    [in tabs] onramp / offramp
+    steps of how it works (a la Stripe)
+- introduce next page (integration)
+
+Connect > Quick Start Integration
+
+- setup API key (contact us for API key)
+- integration is through redirect link (examples: https://paystack.com/docs/payments/accept-payments/#popup)
+- query parameters
+- code examples
+    - Android
+    - iOS
+
+Connect > Supported Networks
+
+Conenct > Supported Currencies & Payment Methods
+
+Connect > Fee Integration
+
+
+API
+
+API > Authentication
+
+- sample: https://docs.turso.tech/api-reference/authentication
+
+API > Errors
+
+- sample: 
+
 
 
 Introduction
