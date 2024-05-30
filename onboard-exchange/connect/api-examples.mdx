@@ -1,0 +1,245 @@
+---
+title: 'API Examples'
+description: 'API Samples for interacting with Onboard Connect'
+---
+
+
+
+## Trade options
+
+<AccordionGroup>
+    <Accordion title="Sample Request">
+        ```bash URL
+        GET /exchange/api/orders/trade-options
+        ```
+    </Accordion>
+    <Accordion title="Sample Response">
+        ```json Response
+{
+    "fiats": [
+        {
+            "name": "Nigerian Naira",
+            "isoCode": "NGN",
+            "symbol": "NGN",
+            "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/NG.png",
+            "unicodeSymbol": "₦"
+        },
+        {
+            "name": "US Dollar",
+            "isoCode": "USD",
+            "symbol": "USD",
+            "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/US.png",
+            "unicodeSymbol": "$"
+        },
+        {
+            "name": "Kenyan Shilling",
+            "isoCode": "KES",
+            "symbol": "KES",
+            "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/KE.png",
+            "unicodeSymbol": "KSh"
+        }
+    ],
+    "networks": [
+        {
+            "name": "Binance Smart Chain Testnet",
+            "networkId": "bsc_testnet",
+            "chainId": 97,
+            "logo": "https://crypto-assets-sandbox.nestcoin.io/bsc/0x0000000000000000000000000000000000000000.png",
+            "nativeAsset": "BNB",
+            "explorer": "https://testnet.bscscan.com",
+            "availableTokens": [
+                {
+                    "networkId": "bsc_testnet",
+                    "decimals": 18,
+                    "isNative": true,
+                    "address": "",
+                    "symbol": "BNB"
+                },
+                {
+                    "networkId": "bsc_testnet",
+                    "decimals": 18,
+                    "isNative": false,
+                    "address": "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
+                    "symbol": "BUSD"
+                },
+                {
+                    "networkId": "bsc_testnet",
+                    "decimals": 18,
+                    "isNative": false,
+                    "address": "0x13e42c4a865b3cb4aec022c80c5fd944f3962573",
+                    "symbol": "USDT"
+                }
+            ]
+        },
+        {
+            "name": "Base Goerli",
+            "networkId": "base_goerli",
+            "chainId": 84531,
+            "logo": "https://crypto-assets-sandbox.nestcoin.io/base/0x0000000000000000000000000000000000000000.png",
+            "nativeAsset": "ETH",
+            "explorer": "https://goerli.basescan.org",
+            "availableTokens": [
+                {
+                    "networkId": "base_goerli",
+                    "decimals": 18,
+                    "isNative": true,
+                    "address": "",
+                    "symbol": "ETH"
+                },
+                {
+                    "networkId": "base_goerli",
+                    "decimals": 6,
+                    "isNative": false,
+                    "address": "0x69bf836577471856edc22f7a28a0d0fc0891261c",
+                    "symbol": "USDC"
+                },
+                {
+                    "networkId": "base_goerli",
+                    "decimals": 18,
+                    "isNative": false,
+                    "address": "0xf66470a6a6496422608dee31a3654a194ec9132c",
+                    "symbol": "USDT"
+                }
+            ]
+        }
+    ],
+    "paymentChannels": [
+        {
+            "paymentChannelId": "BANK_TRANSFER_NIGERIA",
+            "name": "Bank Transfer",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "NGN"
+                },
+                {
+                    "country": "NG",
+                    "currency": "USD"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "BANK_TRANSFER_KENYA",
+            "name": "Bank Transfer",
+            "supportedCurrencies": [
+                {
+                    "country": "KE",
+                    "currency": "KES"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "BANK_TRANSFER_INTL",
+            "name": "Bank Transfer (International)",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "USD"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "OPAY",
+            "name": "Opay",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "NGN"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "ABEG",
+            "name": "PocketApp",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "NGN"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "CHIPPER_CASH",
+            "name": "Chipper Cash",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "NGN"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "BARTER",
+            "name": "Barter",
+            "supportedCurrencies": [
+                {
+                    "country": "NG",
+                    "currency": "NGN"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "M_MESA_PAYBILL",
+            "name": "M-pesa Paybill",
+            "supportedCurrencies": [
+                {
+                    "country": "KE",
+                    "currency": "KES"
+                }
+            ]
+        },
+        {
+            "paymentChannelId": "M_PESA_KENYA_SAFARICOM",
+            "name": "M-PESA Kenya (Safaricom)",
+            "supportedCurrencies": [
+                {
+                    "country": "KE",
+                    "currency": "KES"
+                }
+            ]
+        }
+    ]
+}
+```
+    </Accordion>
+</AccordionGroup>
+
+## Get an order's current price
+
+<AccordionGroup>
+    <Accordion title="Sample Parameters">
+        ```bash URL
+GET ?apiKey=&product=web3&tradeType=Sell&fiat=NGN&token=USDT&tokenAmount=120299&networkId=bsc_testnet
+```
+    </Accordion>
+    <Accordion title="Sample Response">
+        ```json Response
+{
+    "price": 1400
+}
+```
+    </Accordion>
+</AccordionGroup>
+
+## Get trade URL
+
+Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
+
+<AccordionGroup>
+    <Accordion title="Sample Parameters">
+        ```bash URL
+GET &apiKey=onb_test_f284e796ffe4ae3426bddd6f05f098cf&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
+```
+    </Accordion>
+    <Accordion title="Sample Response">
+        ```json Response
+{
+    "tradeUrl": "https://app.dev.onboardpay.co/express/preview?cexOrderId=51&fiat=NGN&token=USDT&walletAddress=0x0a1756f20c3993eAEaeD87934a6aa95936ac889d&tradeType=Sell&network=bsc_testnet&tokenAmount=1&offerId=d1bf4ad0-22ff-43de-aecb-c0ebfb85bc51&product=WEB3&thirdPartyOrderTradeId=fb34dc78-00e4-463a-8f1b-c617c634b148"
+}
+```
+    </Accordion>
+</AccordionGroup>
+
+## Start trade
+
+This endpoint can be used in place of `Get Trade URL`. Instead of returning the trade url, you're instead redirected to the ONRAMP/OFFRAMP flow. This endpoint is best used in a browser or webview.

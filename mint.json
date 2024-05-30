@@ -136,7 +136,8 @@
       "pages": [
         "onboard-exchange/connect/overview",
         "onboard-exchange/connect/quick-start-guide",
-        "onboard-exchange/connect/query-parameters"
+        "onboard-exchange/connect/query-parameters",
+        "onboard-exchange/connect/api-examples"
       ]
     },
     {
