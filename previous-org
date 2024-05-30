@@ -1,5 +1,7 @@
 To add 
 
+mint.json
+
 - under Connect
   - "onboard-exchange/connect/how-it-works"
 
@@ -24,7 +26,15 @@ To add
       ]
     }
 
-- to exchange overview page (after connect card)
+- to exchange intro page (replace)
+
+Whether you are building decentralized applications (dApps), wallets, or merchant platforms, Onboard Exchange offers two developer-friendly integration options tailored to different use cases:
+
+- **[Onboard Connect](/onboard-exchange/connect):** Low-code integration targeted at dApps, wallets and products that want to easily provide a channel for their users to onramp and offramp within their product.
+- **[mOps Integration](/onboard-exchange/merchant-integration):** API suite targeted at merchants and high-volume liquidity entities who want to automate the purchase and sale of crypto via their third-party platforms.
+
+
+- to exchange intro page (after connect card)
 
 <Card
     title="mOps Integration"
@@ -47,6 +57,16 @@ To add
     ✌️ Here's content that's only inside the second Tab.
   </Tab>
 </Tabs>
+
+- connect overview page
+
+## Primary use cases
+
+- **Onramp:** Enable your users to easily deposit crypto into your application using various fiat payment methods like bank transfers, mobile wallets, and other local payment channels.
+- **Offramp:** Allow your users to conveniently convert their tokens held in your dApp or wallet into fiat currencies, enabling easy withdrawal and spending.
+
+Have a different use case? Check out [mOps Integrations](/onboard-exchange/merchant-integrations) or [contact us](mailto:nestechops@nestcoin.com) with more info.
+
 
 
 Introduction ✅
