@@ -204,6 +204,156 @@ description: 'API Samples for interacting with Onboard Connect'
     </Accordion>
 </AccordionGroup>
 
+## Get trade URL
+
+Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
+
+<AccordionGroup>
+    <Accordion title="Sample Parameters">
+        ```bash URL
+GET &apiKey=onb_test_f284e796ffe4ae3426bddd6f05f098cf&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
+```
+    </Accordion>
+    <Accordion title="Sample Response">
+        ```json Response
+{
+    "tradeUrl": "https://app.dev.onboardpay.co/express/confirm?cexOrderId=51&fiat=NGN&token=USDT&walletAddress=0x0a1756f20c3993eAEaeD87934a6aa95936ac889d&tradeType=Sell&network=bsc_testnet&tokenAmount=1&offerId=d1bf4ad0-22ff-43de-aecb-c0ebfb85bc51&product=WEB3&thirdPartyOrderTradeId=fb34dc78-00e4-463a-8f1b-c617c634b148"
+}
+```
+    </Accordion>
+</AccordionGroup>
+
+
+## Start trade
+
+This endpoint can be used in place of `Get Trade URL`, which returns the trade url in JSON. Instead, the `Start trade` endpoint automatically resolves to trade URL. This endpoint is best used to initiate trades within a browser or webview.
+
+<CodeGroup>
+    ```bash Staging
+    https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>
+    ```
+    ```bash Production
+    https://external.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>
+    ```
+    </CodeGroup>
+
+### Sample mobile app integration
+        For mobile apps, the redirect link can be used within an embedded browser or webview component.
+
+        <AccordionGroup>
+            <Accordion title="🤖 Android">
+                To integrate Connect to your Android app, see the `Java` and `Kotlin` snippets below:
+
+                <CodeGroup>
+
+                    ```java Java
+                    import android.os.Bundle;
+                    import android.webkit.WebSettings;
+                    import android.webkit.WebView;
+                    import androidx.appcompat.app.AppCompatActivity;
+
+                    public class MainActivity extends AppCompatActivity {
+                        private WebView webView;
+
+                        @Override
+                        protected void onCreate(Bundle savedInstanceState) {
+                            super.onCreate(savedInstanceState);
+                            setContentView(R.layout.activity_main);
+
+                            webView = findViewById(R.id.webView);
+                            WebSettings webSettings = webView.getSettings();
+                            webSettings.setJavaScriptEnabled(true);
+
+                            // Load the URL
+                            webView.loadUrl("https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>");
+                        }
+                    }
+                    ```
+
+                    ```kotlin Kotlin
+                    import android.os.Bundle
+                    import android.webkit.WebSettings
+                    import android.webkit.WebView
+                    import androidx.appcompat.app.AppCompatActivity
+
+                    class MainActivity : AppCompatActivity() {
+                        private lateinit var webView: WebView
+
+                        override fun onCreate(savedInstanceState: Bundle?) {
+                            super.onCreate(savedInstanceState)
+                            setContentView(R.layout.activity_main)
+
+                            webView = findViewById(R.id.webView)
+                            val webSettings: WebSettings = webView.settings
+                            webSettings.javaScriptEnabled = true
+
+                            // Load the URL
+                            webView.loadUrl("https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>")
+                        }
+                    }
+                    ```
+
+                </CodeGroup>
+            </Accordion>
+            <Accordion title="🍏 iOS">
+                To integrate Connect to your iOS app, see the `Swift` and `Flutter` snippets below:
+
+                <CodeGroup>
+
+                    ```swift Swift
+                    import UIKit
+                    import WebKit
+
+                    class ViewController: UIViewController, WKNavigationDelegate {
+                        @IBOutlet var webView: WKWebView!
+
+                        override func viewDidLoad() {
+                            super.viewDidLoad()
+
+                            // Set the WKWebView navigation delegate
+                            webView.navigationDelegate = self
+
+                            // Load the URL
+                            if let url = URL(string: "https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>") {
+                                let request = URLRequest(url: url)
+                                webView.load(request)
+                            }
+                        }
+                    }
+                    ```
+
+                    ```flutter Flutter
+                    class WebViewExample extends StatefulWidget {
+                        @override
+                        _WebViewExampleState createState() => _WebViewExampleState();
+                    }
+
+                    class _WebViewExampleState extends State<WebViewExample> {
+                        final String url = "https://external.dev.onboardpay.co/exchange/orders/trade?apiKey=<API_KEY>&product=web3&<TRADE_QUERY_PARAMETERS>";
+                        final Completer<WebViewController> _controller =
+                            Completer<WebViewController>();
+
+                        @override
+                        Widget build(BuildContext context) {
+                            return Scaffold(
+                                appBar: AppBar(
+                                    title: Text("Onboard Test App"),
+                                ),
+                                body: WebView(
+                                    initialUrl: url,
+                                    onWebViewCreated: (WebViewController webViewController) {
+                                    _controller.complete(webViewController);
+                                    },
+                                ),
+                            );
+                        }
+                    }
+                    ```
+
+                </CodeGroup>
+            </Accordion>
+        </AccordionGroup>
+
 ## Get an order's current price
 
 <AccordionGroup>
@@ -220,26 +370,3 @@ GET ?apiKey=&product=web3&tradeType=Sell&fiat=NGN&token=USDT&tokenAmount=120299&
 ```
     </Accordion>
 </AccordionGroup>
-
-## Get trade URL
-
-Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
-
-<AccordionGroup>
-    <Accordion title="Sample Parameters">
-        ```bash URL
-GET &apiKey=onb_test_f284e796ffe4ae3426bddd6f05f098cf&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
-```
-    </Accordion>
-    <Accordion title="Sample Response">
-        ```json Response
-{
-    "tradeUrl": "https://app.dev.onboardpay.co/express/preview?cexOrderId=51&fiat=NGN&token=USDT&walletAddress=0x0a1756f20c3993eAEaeD87934a6aa95936ac889d&tradeType=Sell&network=bsc_testnet&tokenAmount=1&offerId=d1bf4ad0-22ff-43de-aecb-c0ebfb85bc51&product=WEB3&thirdPartyOrderTradeId=fb34dc78-00e4-463a-8f1b-c617c634b148"
-}
-```
-    </Accordion>
-</AccordionGroup>
-
-## Start trade
-
-This endpoint can be used in place of `Get Trade URL`. Instead of returning the trade url, you're instead redirected to the ONRAMP/OFFRAMP flow. This endpoint is best used in a browser or webview.
