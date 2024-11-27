@@ -23,7 +23,7 @@ This URL must be able to:
 - Accept the webhook payload (see structure [below](#webhook-payload-structure)).
 - Verify the authenticity of the sender using the signature in the request header.
 
-<Note>If the webhook endpoint does not specify a `200 0K` HTTP response code on receipt of webhook data, there will be subsequent attempts to resend it until the retry attempts are exhausted.<br/><br/>Number of retry attempts is currently set at 3.</Note>
+<Warning>If the webhook endpoint does not specify a `200 0K` HTTP response code on receipt of webhook data, there will be subsequent attempts to resend it until the retry attempts are exhausted.<br/><br/>Number of retry attempts is currently set at 3.</Warning>
 
 ## Verifying webhook origin
 
