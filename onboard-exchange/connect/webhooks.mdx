@@ -152,11 +152,11 @@ A webhook payload will typically conform to the structure below:
 
 | Event | Description |
 | -------- | ------------------------------------- |
-| order.state_transition | Triggered when an [order's state](#order-states) changes, such as from `INITIATED` to `DEPOSITED`. Includes detailed payload data for tracking. See sample below. |
+| order.state_transition | Triggered when an [order's state](#order-states) changes, such as from `INITIATED` to `DEPOSITED`. Includes detailed payload data for tracking.|
 
 ### Order states
 
-| State | Description                           | Is terminal | Allowed transition |
+| State | Description| Is terminal | Allowed transition |
 | -------- | ------------------------------------- | -------- | ----- |
 | `PENDING`     | This is an order's initial state when instantiated by a user | No | `AWAITING_ACCEPTANCE`<br/> `INITIATED`<br/> `CANCELLED` |
 | `AWAITING_ACCEPTANCE` | For orders that require prior acceptance before being initiated, this state indicates that the merchant is yet to accept the order. <br/><br/>This is usually because the merchant turned off auto-escrow on their ad, or the customer is selling an ERC-20 token. | No | `CANCELLED`<br/>`INITIATED` |
@@ -168,6 +168,6 @@ A webhook payload will typically conform to the structure below:
 | `CANCELLED` | The order was cancelled | Yes | N/A |
 
 <Tip>
-A `terminal` state indicates that the state/status cannot be reversed, or transit to a different state.<br/><br/>It usually means the order has terminated, either as completed or cancelled.
+A `terminal` state indicates that the state/status cannot be reversed, or transition to a different state.<br/><br/>It usually means the order has terminated, either as completed or cancelled.
 </Tip>
 
