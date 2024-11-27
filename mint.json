@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Onboard Protocol",
+  "name": "Onboard Developer Documentation",
   "logo": {
     "dark": "/logo/new-logo.svg",
     "light": "/logo/new-logo.svg"
