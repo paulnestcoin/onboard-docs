@@ -1,0 +1,173 @@
+---
+title: 'Webhooks'
+description: 'Receive real-time notifications about order events and state changes'
+---
+
+## Introduction
+
+Webhooks enable your app get notified of events and state changes when interacting with Onboard's widget or API.
+
+For instance, you'll receive a webhook notification when an order transitions from `INITIATED` to `DEPOSITED`.
+
+## Setting up a webhook
+
+To get started, configure a **publicly accessible** webhook URL from Onboard Connect's Settings in the Business portal dashboard.
+
+<Frame>
+    <img src="https://i.imgur.com/L2ifnr8.png" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+This URL must be able to:
+
+- Return a `200 OK` HTTP status code with no response `body`.
+- Accept the webhook payload (see structure [below](#webhook-payload-structure)).
+- Verify the authenticity of the sender using the signature in the request header.
+
+<Note>If the webhook endpoint does not specify a `200 0K` HTTP response code on receipt of webhook data, there will be subsequent attempts to resend it until the retry attempts are exhausted.<br/><br/>Number of retry attempts is currently set at 3.</Note>
+
+## Verifying webhook origin
+
+Since your webhook URL is publicly available, you need to verify that events originate from Onboard and not a bad actor.
+
+To ensure this, each webhook attempt makes use of *signed HTTP headers*, which contain values you can use to verify the authenticity of the data being transmitted between Onboard and your application.
+
+The following signed headers can be used:
+
+### x-signature
+
+- Here's an example, in Javascript, of how this parameter can be verified:
+
+```javascript
+const crypto = require('crypto');
+
+function verifyWebhook(payload, signature, apiSecret) {
+  const timestamp = payload.timestamp;
+  const data = `t=${timestamp}&${JSON.stringify(payload.data)}`;
+  const expectedSignature = crypto
+    .createHmac('sha256', apiSecret)
+    .update(data)
+    .digest('hex');
+
+  return expectedSignature === signature;
+}
+```
+
+<Tip>The `apiSecret` is the same as the one configured from your Business portal dashboard.</Tip>
+
+### x-timestamp
+- This is the timestamp used to generate the signature
+
+## Webhook payload structure
+A webhook payload will typically conform to the structure below:
+
+```json
+{
+  "event" : "<WEBHOOK_EVENT>", // Name of the event triggering the webhook
+  "data" : {}, // Event-specific payload data
+  "timestamp" : "1674775222" // Event timestamp in Unix format
+}
+```
+
+<Tip>`data` is an object which is peculiar to the specific webhook context.</Tip>
+
+### Sample payload
+
+<Accordion title="order.state_transition">
+  ```json
+    {
+    "event" : "order.state_transition",
+    "data" : {
+        "id": "76733823-b8b3-4aad-b603-0ddbccac7f57",
+        "reference": "0173270620673048624933",
+        "customerId": "5a83377d-7c57-4725-992f-9c50349af917",
+        "customerName": "Nonami Animashaun",
+        "offer": {
+            "offerId": "488a550c-ee5a-4505-9f3d-774c80b7dc71",
+            "partnerId": "b542a14a-ac19-4d9c-9bb8-fd7b7d7c16c2",
+            "transactionType": "OFFRAMP",
+            "rate": 16.32,
+            "networkId": "bsc_testnet",
+            "token": "USDT",
+            "tokenAmount": 3,
+            "fiatSymbol": "GHS",
+            "fiatAmount": 48.96,
+            "partnerDisplayName": "The_Merchant",
+            "usdAmount": 3,
+            "reservationStatus": null,
+            "adNote": "",
+            "fee": null,
+            "channels": [
+
+            ],
+            "instantPayEnabled": false,
+            "instantPayPaymentAccountId": null,
+            "customPayinProvider": null,
+            "tradeMode": "P2P",
+            "tradeCriteria": null
+        },
+        "status": "AWAITING_ACCEPTANCE",
+        "escrowAddress": "0xa9ba7f7ec7701aba3b70983014fe452e47ca62e2",
+        "paymentChannelId": "BANK_TRANSFER_GHANA",
+        "customerWallet": {
+            "walletAddress": "0xe1adD9b4861BD42251683C5320d9601eE9Cf53b8",
+            "networkId": "bsc_testnet",
+            "walletName": null
+        },
+        "tokenAddress": "0x13e42c4a865b3cb4aec022c80c5fd944f3962573",
+        "createdAt": "2024-11-27T13:57:56.970Z",
+        "initiatedAt": null,
+        "depositedAt": null,
+        "confirmedAt": null,
+        "completedAt": null,
+        "cancelledAt": null,
+        "disputeId": null,
+        "lockHash": null,
+        "confirmationHash": null,
+        "cancellationHash": null,
+        "cancellationReason": null,
+        "isPartnerAcknowledged": false,
+        "rating": null,
+        "isCexOrder": false,
+        "tradeValue": 3,
+        "merchantTokenValue": 3,
+        "customerTokenValue": 3,
+        "payableAmount": 48.96,
+        "fee": {
+            "asToken": "0",
+            "asFiat": 0
+        },
+        "instantPayProcessingStatus": null,
+        "thirdpartyOrderInfo": {
+            "businessId": "60037f44-9094-4bd5-a316-21995e8985c9",
+            "tradeId": "c1106507-ef09-4af1-8af5-2dd4463b6327",
+            "product": "WEB3"
+        }
+    },
+    "timestamp" : "1732718962"
+    }
+  ```
+</Accordion>
+
+## Supported webhook events
+
+| Event | Description |
+| -------- | ------------------------------------- |
+| order.state_transition | Triggered when an [order's state](#order-states) changes, such as from `INITIATED` to `DEPOSITED`. Includes detailed payload data for tracking. See sample below. |
+
+### Order states
+
+| State | Description                           | Is terminal | Allowed transition |
+| -------- | ------------------------------------- | -------- | ----- |
+| `PENDING`     | This is an order's initial state when instantiated by a user | No | `AWAITING_ACCEPTANCE`<br/> `INITIATED`<br/> `CANCELLED` |
+| `AWAITING_ACCEPTANCE` | For orders that require prior acceptance before being initiated, this state indicates that the merchant is yet to accept the order. <br/><br/>This is usually because the merchant turned off auto-escrow on their ad, or the customer is selling an ERC-20 token. | No | `CANCELLED`<br/>`INITIATED` |
+| `INITIATED` | The order has been create onchain, but the buyer hasn't confirmed sending fiat to the seller | No | `CANCELLED`<br/>`DEPOSITED`<br/>`IN_DISPUTE` |
+| `DEPOSITED` | This indicates that the buyer has confirmed making a fiat transfer to the seller | No | `CONFIRMED`<br/>`CANCELLED`<br/>`IN_DISPUTE` |
+| `CONFIRMED` | The seller has confirmed receipt of fiat | No | `COMPLETED` |
+| `IN_DISPUTE` | A participant in the transaction has raised a dispute | No | `CANCELLED`<br/>`CONFIRMED` |
+| `COMPLETED` | The order has been completed and closed on chain | Yes | N/A |
+| `CANCELLED` | The order was cancelled | Yes | N/A |
+
+<Tip>
+A `terminal` state indicates that the state/status cannot be reversed, or transit to a different state.<br/><br/>It usually means the order has terminated, either as completed or cancelled.
+</Tip>
+

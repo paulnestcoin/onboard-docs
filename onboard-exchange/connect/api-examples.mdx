@@ -4,8 +4,7 @@ description: 'API Samples for interacting with Onboard Connect'
 ---
 
 
-
-## Trade options
+### Trade options
 
 <AccordionGroup>
     <Accordion title="Sample Request">
@@ -204,7 +203,7 @@ description: 'API Samples for interacting with Onboard Connect'
     </Accordion>
 </AccordionGroup>
 
-## Get trade URL
+### Get trade URL
 
 Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
 
@@ -224,7 +223,7 @@ GET https://external.dev.onboardpay.co/exchange/api/orders/trade-url&apiKey=onb_
 </AccordionGroup>
 
 
-## Start trade
+### Start trade
 
 This endpoint can be used in place of `Get Trade URL`, which returns the trade url in JSON. Instead, the `Start trade` endpoint automatically resolves to trade URL. This endpoint is best used to initiate trades within a browser or webview.
 
@@ -237,7 +236,7 @@ This endpoint can be used in place of `Get Trade URL`, which returns the trade u
     ```
     </CodeGroup>
 
-### Sample mobile app integration
+#### Sample mobile app integration
         For mobile apps, the redirect link can be used within an embedded browser or webview component.
 
         <AccordionGroup>
@@ -354,7 +353,7 @@ This endpoint can be used in place of `Get Trade URL`, which returns the trade u
             </Accordion>
         </AccordionGroup>
 
-## Get an order's current price
+### Get an order's current price
 
 <AccordionGroup>
     <Accordion title="Sample Parameters">
