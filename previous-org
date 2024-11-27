@@ -194,3 +194,32 @@ Community and Support
 - Getting Help
 - Contributing to Onboard
 - Links to Forums, Discord, GitHub, and Social Media
+
+---
+
+more stuff to add
+
+- how it works (exchange)-- how customers interact with it
+  similar to Stripe's
+  add mermaid / sequence diagram from docs
+  mention transition states and some orders requiring acceptance
+
+- add fee configuration
+
+- add live API docs & samples
+
+- add protocol docs
+
+resources
+
+- https://paystack.com/docs/
+- https://docs.stripe.com/payments/quickstart
+- https://diataxis.fr/
+- merchant integrations
+  - https://dev.docs.onboardpay.co/category/merchant-integrations
+  - https://developers.onboard.xyz/merchant-integration
+- custodial ramp
+  - https://dev.docs.onboardpay.co/category/custodial-ramp-integration
+- APIs
+  - https://dev.docs.onboardpay.co/merchant-integration/api/doc
+  - https://docs.nestechops.com/api-docs/index.html
