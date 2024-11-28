@@ -1,0 +1,35 @@
+---
+title: 'Configuring fees (wip)'
+description: ''
+---
+
+## Introduction
+Onboard Connect's flexible fee system allows developers to set additional fees on top of Onboard's standard fee for on and off-ramp transactions.
+
+This guide explains how fees work, how they're applied, and how you can configure and redeem them using the Business Dashboard.
+
+## Fee types
+Fee Type	Who Pays	Purpose
+Gas Costs (Blockchain)	Paid by the user	Covers transaction costs on the blockchain. These are determined by the network and are not Onboard fees.
+Onboard Fee (0.5%)	Paid by the user	Onboard’s base fee for facilitating the transaction.
+Developer Fee (Optional)	Paid by the user	Additional fee set by developers to generate revenue from each transaction.
+
+- besides gas costs incurred in certain parts of the transaction (these gas costs don't go to onboard but are needed to pay to the blockchain network due to onboard's non-custodial nature)
+
+- for on and offramps, customers also pay fees to onboard (& optionally, you the developer... you can charge your customer fees)...
+
+- onboard currently charges 0.5%
+
+- fees are fully borne by customers, and deducted from the crypto amount they are trying to buy / sell
+
+- merchants aren't charged any fees. any charges incurred by merchants during order fulfillment are from their bank / wallet, which are external to onboard
+
+- you can also charge fees on top of this 0.5%
+
+- example: if you charge 0.5%, on top of onboard's 0.5%, your customer will pay 1%
+
+- this means if they're buying 100 USDC, they'll receive 99 USDC... if they're selling 100 USDC, 1 USDC will be deducted for fees, and they'll receive the fiat equivalent of 99 USDC
+
+- to configure your fees, go to Onboard Connect Settings from within your Business Dashboard. Click on the Fee Setup (Defi) tab, and set your partner fee preference, for both on and offramp trades. Voila, very very simple.
+
+- your fees are deposited [where...]... to redeem your fees, do x

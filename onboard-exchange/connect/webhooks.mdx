@@ -75,75 +75,76 @@ A webhook payload will typically conform to the structure below:
 <Accordion title="order.state_transition">
   ```json
     {
-    "event" : "order.state_transition",
-    "data" : {
-        "id": "76733823-b8b3-4aad-b603-0ddbccac7f57",
-        "reference": "0173270620673048624933",
-        "customerId": "5a83377d-7c57-4725-992f-9c50349af917",
-        "customerName": "Nonami Animashaun",
-        "offer": {
-            "offerId": "488a550c-ee5a-4505-9f3d-774c80b7dc71",
-            "partnerId": "b542a14a-ac19-4d9c-9bb8-fd7b7d7c16c2",
-            "transactionType": "OFFRAMP",
-            "rate": 16.32,
-            "networkId": "bsc_testnet",
-            "token": "USDT",
-            "tokenAmount": 3,
-            "fiatSymbol": "GHS",
-            "fiatAmount": 48.96,
-            "partnerDisplayName": "The_Merchant",
-            "usdAmount": 3,
-            "reservationStatus": null,
-            "adNote": "",
-            "fee": null,
-            "channels": [
+      "event" : "order.state_transition",
+      "data" : {
+          "id": "76733823-b8b3-4aad-b603-0ddbccac7f57",
+          "reference": "0173270620673048624933",
+          "customerId": "5a83377d-7c57-4725-992f-9c50349af917",
+          "customerName": "Nonami Animashaun",
+          "offer": {
+              "offerId": "488a550c-ee5a-4505-9f3d-774c80b7dc71",
+              "partnerId": "b542a14a-ac19-4d9c-9bb8-fd7b7d7c16c2",
+              "transactionType": "OFFRAMP",
+              "rate": 16.32,
+              "networkId": "bsc_testnet",
+              "token": "USDT",
+              "tokenAmount": 3,
+              "fiatSymbol": "GHS",
+              "fiatAmount": 48.96,
+              "partnerDisplayName": "The_Merchant",
+              "usdAmount": 3,
+              "reservationStatus": null,
+              "adNote": "",
+              "fee": null,
+              "channels": [
 
-            ],
-            "instantPayEnabled": false,
-            "instantPayPaymentAccountId": null,
-            "customPayinProvider": null,
-            "tradeMode": "P2P",
-            "tradeCriteria": null
-        },
-        "status": "AWAITING_ACCEPTANCE",
-        "escrowAddress": "0xa9ba7f7ec7701aba3b70983014fe452e47ca62e2",
-        "paymentChannelId": "BANK_TRANSFER_GHANA",
-        "customerWallet": {
-            "walletAddress": "0xe1adD9b4861BD42251683C5320d9601eE9Cf53b8",
-            "networkId": "bsc_testnet",
-            "walletName": null
-        },
-        "tokenAddress": "0x13e42c4a865b3cb4aec022c80c5fd944f3962573",
-        "createdAt": "2024-11-27T13:57:56.970Z",
-        "initiatedAt": null,
-        "depositedAt": null,
-        "confirmedAt": null,
-        "completedAt": null,
-        "cancelledAt": null,
-        "disputeId": null,
-        "lockHash": null,
-        "confirmationHash": null,
-        "cancellationHash": null,
-        "cancellationReason": null,
-        "isPartnerAcknowledged": false,
-        "rating": null,
-        "isCexOrder": false,
-        "tradeValue": 3,
-        "merchantTokenValue": 3,
-        "customerTokenValue": 3,
-        "payableAmount": 48.96,
-        "fee": {
-            "asToken": "0",
-            "asFiat": 0
-        },
-        "instantPayProcessingStatus": null,
-        "thirdpartyOrderInfo": {
-            "businessId": "60037f44-9094-4bd5-a316-21995e8985c9",
-            "tradeId": "c1106507-ef09-4af1-8af5-2dd4463b6327",
-            "product": "WEB3"
-        }
-    },
-    "timestamp" : "1732718962"
+              ],
+              "instantPayEnabled": false,
+              "instantPayPaymentAccountId": null,
+              "customPayinProvider": null,
+              "tradeMode": "P2P",
+              "tradeCriteria": null
+          },
+          "status": "AWAITING_ACCEPTANCE",
+          "escrowAddress": "0xa9ba7f7ec7701aba3b70983014fe452e47ca62e2",
+          "paymentChannelId": "BANK_TRANSFER_GHANA",
+          "customerWallet": {
+              "walletAddress": "0xe1adD9b4861BD42251683C5320d9601eE9Cf53b8",
+              "networkId": "bsc_testnet",
+              "walletName": null
+          },
+          "tokenAddress": "0x13e42c4a865b3cb4aec022c80c5fd944f3962573",
+          "createdAt": "2024-11-27T13:57:56.970Z",
+          "initiatedAt": null,
+          "depositedAt": null,
+          "confirmedAt": null,
+          "completedAt": null,
+          "cancelledAt": null,
+          "disputeId": null,
+          "lockHash": null,
+          "confirmationHash": null,
+          "cancellationHash": null,
+          "cancellationReason": null,
+          "isPartnerAcknowledged": false,
+          "rating": null,
+          "isCexOrder": false,
+          "tradeValue": 3,
+          "merchantTokenValue": 3,
+          "customerTokenValue": 3,
+          "payableAmount": 48.96,
+          "fee": {
+              "asToken": "0",
+              "asFiat": 0
+          },
+          "instantPayProcessingStatus": null,
+          "thirdpartyOrderInfo": {
+              "businessId": "60037f44-9094-4bd5-a316-21995e8985c9",
+              "tradeId": "c1106507-ef09-4af1-8af5-2dd4463b6327",
+              "product": "WEB3",
+              "externalOrderReference": "12345" // same as the orderId passed when initiating the order
+          }
+      },
+      "timestamp" : "1732718962"
     }
   ```
 </Accordion>

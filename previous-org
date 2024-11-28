@@ -223,3 +223,7 @@ resources
 - APIs
   - https://dev.docs.onboardpay.co/merchant-integration/api/doc
   - https://docs.nestechops.com/api-docs/index.html
+
+
+
+- add query by orderId to API examples once ready
