@@ -4,7 +4,9 @@ description: 'API Samples for interacting with Onboard Connect'
 ---
 
 
-### Trade options
+## Trade options
+
+This endpoint provides a list of supported fiat currencies, blockchain networks, payment channels, and transaction limits supported by Onboard. users to configure their trades.
 
 <AccordionGroup>
     <Accordion title="Sample Request">
@@ -30,116 +32,59 @@ description: 'API Samples for interacting with Onboard Connect'
                     "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/US.png",
                     "unicodeSymbol": "$"
                 },
-                {
-                    "name": "Kenyan Shilling",
-                    "isoCode": "KES",
-                    "symbol": "KES",
-                    "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/KE.png",
-                    "unicodeSymbol": "KSh"
-                }
+                ...
             ],
             "networks": [
                 {
                     "name": "Binance Smart Chain Testnet",
                     "networkId": "bsc_testnet",
                     "chainId": 97,
-                    "logo": "https://crypto-assets-sandbox.nestcoin.io/bsc/0x0000000000000000000000000000000000000000.png",
                     "nativeAsset": "BNB",
                     "explorer": "https://testnet.bscscan.com",
                     "availableTokens": [
                         {
-                            "networkId": "bsc_testnet",
-                            "decimals": 18,
-                            "isNative": true,
-                            "address": "",
-                            "symbol": "BNB"
+                            "symbol": "BNB",
+                            "isNative": true
                         },
                         {
-                            "networkId": "bsc_testnet",
-                            "decimals": 18,
-                            "isNative": false,
-                            "address": "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
-                            "symbol": "BUSD"
-                        },
-                        {
-                            "networkId": "bsc_testnet",
-                            "decimals": 18,
-                            "isNative": false,
-                            "address": "0x13e42c4a865b3cb4aec022c80c5fd944f3962573",
-                            "symbol": "USDT"
+                            "symbol": "USDT",
+                            "isNative": false
                         }
                     ]
                 },
                 {
-                    "name": "Base Goerli",
-                    "networkId": "base_goerli",
-                    "chainId": 84531,
-                    "logo": "https://crypto-assets-sandbox.nestcoin.io/base/0x0000000000000000000000000000000000000000.png",
+                    "name": "Base Sepolia Testnet",
+                    "networkId": "base_sepolia",
+                    "chainId": 84532,
                     "nativeAsset": "ETH",
-                    "explorer": "https://goerli.basescan.org",
+                    "explorer": "https://sepolia.basescan.org",
                     "availableTokens": [
                         {
-                            "networkId": "base_goerli",
-                            "decimals": 18,
-                            "isNative": true,
-                            "address": "",
-                            "symbol": "ETH"
+                            "symbol": "ETH",
+                            "isNative": true
                         },
                         {
-                            "networkId": "base_goerli",
-                            "decimals": 6,
-                            "isNative": false,
-                            "address": "0x69bf836577471856edc22f7a28a0d0fc0891261c",
-                            "symbol": "USDC"
-                        },
-                        {
-                            "networkId": "base_goerli",
-                            "decimals": 18,
-                            "isNative": false,
-                            "address": "0xf66470a6a6496422608dee31a3654a194ec9132c",
-                            "symbol": "USDT"
+                            "symbol": "USDC",
+                            "isNative": false
                         }
                     ]
-                }
+                },
+                ...
             ],
+            "transactionLimitsConfig": {
+                "kyc": {
+                    "minSingleTransactionLimit": 0.05,
+                    "maxSingleTransactionLimit": 2000
+                },
+                "noKyc": {
+                    "minSingleTransactionLimit": 0.05,
+                    "maxSingleTransactionLimit": 25
+                }
+            },
             "paymentChannels": [
                 {
                     "paymentChannelId": "BANK_TRANSFER_NIGERIA",
-                    "name": "Bank Transfer",
-                    "supportedCurrencies": [
-                        {
-                            "country": "NG",
-                            "currency": "NGN"
-                        },
-                        {
-                            "country": "NG",
-                            "currency": "USD"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "BANK_TRANSFER_KENYA",
-                    "name": "Bank Transfer",
-                    "supportedCurrencies": [
-                        {
-                            "country": "KE",
-                            "currency": "KES"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "BANK_TRANSFER_INTL",
-                    "name": "Bank Transfer (International)",
-                    "supportedCurrencies": [
-                        {
-                            "country": "NG",
-                            "currency": "USD"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "OPAY",
-                    "name": "Opay",
+                    "name": "Bank Transfer - Nigeria",
                     "supportedCurrencies": [
                         {
                             "country": "NG",
@@ -148,62 +93,60 @@ description: 'API Samples for interacting with Onboard Connect'
                     ]
                 },
                 {
-                    "paymentChannelId": "ABEG",
-                    "name": "PocketApp",
+                    "paymentChannelId": "BANK_TRANSFER_SOUTH_AFRICA",
+                    "name": "Bank Transfer - South Africa",
                     "supportedCurrencies": [
                         {
-                            "country": "NG",
-                            "currency": "NGN"
+                            "country": "ZA",
+                            "currency": "ZAR"
                         }
                     ]
                 },
-                {
-                    "paymentChannelId": "CHIPPER_CASH",
-                    "name": "Chipper Cash",
-                    "supportedCurrencies": [
-                        {
-                            "country": "NG",
-                            "currency": "NGN"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "BARTER",
-                    "name": "Barter",
-                    "supportedCurrencies": [
-                        {
-                            "country": "NG",
-                            "currency": "NGN"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "M_MESA_PAYBILL",
-                    "name": "M-pesa Paybill",
-                    "supportedCurrencies": [
-                        {
-                            "country": "KE",
-                            "currency": "KES"
-                        }
-                    ]
-                },
-                {
-                    "paymentChannelId": "M_PESA_KENYA_SAFARICOM",
-                    "name": "M-PESA Kenya (Safaricom)",
-                    "supportedCurrencies": [
-                        {
-                            "country": "KE",
-                            "currency": "KES"
-                        }
-                    ]
-                }
+                ...
             ]
         }
 ```
     </Accordion>
 </AccordionGroup>
 
-### Get trade URL
+### Explanation of key properties
+
+<AccordionGroup>
+    <Accordion title="fiats">
+        |Property|Description|
+        |--------|-----|
+        |`name`|Full name of the fiat currency.|
+        |`isoCode`|ISO 4217 code representing the currency.|
+        |`symbol`|Symbol for the currency.|
+        |`unicodeSymbol`|Unicode character for the currency.|
+        |`logo`|URL to the flag or icon representing the currency.|
+    </Accordion>
+    <Accordion title="networks">
+
+        |Property|Description|
+        |--------|-----|
+        |`name`|Full name of the blockchain network.|
+        |`networkId`|Identifier used within Onboard for the network.|
+        |`chainId`|Standard chain ID for the blockchain.|
+        |`nativeAsset`|Native token used for transactions on the network.|
+        |`explorer`|URL to the blockchain explorer for the network.|
+    </Accordion>
+    <Accordion title="transactionLimitsConfig">
+        |Property|Description|
+        |--------|-----|
+        |`kyc`|Limits for users with KYC verification.|
+        |`noKyc`|Limits for users without KYC verification.|
+    </Accordion>
+    <Accordion title="paymentChannels">
+        |Property|Description|
+        |--------|-----|
+        |`paymentChannelId`|Unique ID for the payment channel.|
+        |`name`|Display name for the payment channel.|
+        |`supportedCurrencies`|Array of countries and their currencies supported by the channel.|
+    </Accordion>
+</AccordionGroup>
+
+## Get trade URL
 
 Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
 
@@ -225,7 +168,7 @@ GET https://external.dev.onboardpay.co/exchange/api/orders/trade-url&apiKey=onb_
 See [here](/onboard-exchange/connect/query-parameters) for a full list of parameters that can be used in the URL.
 
 
-### Start trade
+## Start trade
 
 This endpoint can be used in place of `Get Trade URL`, which returns the trade url in JSON. Instead, the `Start trade` endpoint automatically resolves to trade URL. This endpoint is best used to initiate trades within a browser or webview.
 
@@ -240,7 +183,7 @@ This endpoint can be used in place of `Get Trade URL`, which returns the trade u
 
 See [here](/onboard-exchange/connect/query-parameters) for a full list of parameters that can be used in the URL.
 
-#### Sample mobile app integration
+### Sample mobile app integration
         For mobile apps, the redirect link can be used within an embedded browser or webview component.
 
         <AccordionGroup>
@@ -357,7 +300,7 @@ See [here](/onboard-exchange/connect/query-parameters) for a full list of parame
             </Accordion>
         </AccordionGroup>
 
-### Get an order's current price
+## Get an order's current price
 
 <AccordionGroup>
     <Accordion title="Sample Parameters">
