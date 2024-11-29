@@ -73,15 +73,15 @@ This endpoint provides a list of supported fiat currencies, blockchain networks,
             ],
             "transactionLimitsConfig": {
                 "kyc": {
-                    "minSingleTransactionLimit": 0.05,
-                    "maxSingleTransactionLimit": 2000,
-                    "dailyTransactionLimit": 6000
+                    "minSingleTransactionLimit": 0.05, // in USD
+                    "maxSingleTransactionLimit": 2000, // in USD
+                    "dailyTransactionLimit": 6000 // in USD
                 },
                 "noKyc": {
-                    "minSingleTransactionLimit": 0.05,
-                    "maxSingleTransactionLimit": 25,
-                    "dailyTransactionLimit": 25,
-                    "maxLifetimeLimit": 25
+                    "minSingleTransactionLimit": 0.05, // in USD
+                    "maxSingleTransactionLimit": 25, // in USD
+                    "dailyTransactionLimit": 25, // in USD
+                    "maxLifetimeLimit": 25 // in USD
                 }
             },
             "paymentChannels": [
@@ -137,8 +137,8 @@ This endpoint provides a list of supported fiat currencies, blockchain networks,
     <Tab title="transactionLimitsConfig">
         |Property|Description|
         |--------|-----|
-        |`kyc`|Limits for users with KYC verification.|
-        |`noKyc`|Limits for users without KYC verification.<br/><br/>Contains an additional `maxLifetimeLimit` property, which specifies the total allowable transaction limit over the lifetime of a user without completing KYC verification.|
+        |`kyc`|Limits for users with KYC verification, denominated in USD.|
+        |`noKyc`|Limits for users without KYC verification, denominated in USD.<br/><br/>Contains an additional `maxLifetimeLimit` property, which specifies the total allowable transaction limit over the lifetime of a user without completing KYC verification.|
     </Tab>
     <Tab title="paymentChannels">
         |Property|Description|
