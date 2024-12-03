@@ -23,14 +23,40 @@ This endpoint provides a list of supported fiat currencies, blockchain networks,
                     "isoCode": "NGN",
                     "symbol": "NGN",
                     "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/NG.png",
-                    "unicodeSymbol": "₦"
+                    "unicodeSymbol": "₦",
+                    "transactionLimits": {
+                        "kyc": {
+                            "minSingleTransactionLimit": 86.12310458350001,
+                            "maxSingleTransactionLimit": 3444924.18334,
+                            "dailyTransactionLimit": 10334772.55002
+                        },
+                        "noKyc": {
+                            "minSingleTransactionLimit": 86.12310458350001,
+                            "maxSingleTransactionLimit": 43061.55229175,
+                            "dailyTransactionLimit": 43061.55229175,
+                            "maxLifetimeLimit": 43061.55229175
+                        }
+                    }
                 },
                 {
                     "name": "US Dollar",
                     "isoCode": "USD",
                     "symbol": "USD",
                     "logo": "https://s3.us-west-2.amazonaws.com/country-flags-staging.getonboard.co/US.png",
-                    "unicodeSymbol": "$"
+                    "unicodeSymbol": "$",
+                    "transactionLimits": {
+                        "kyc": {
+                            "minSingleTransactionLimit": 0.05,
+                            "maxSingleTransactionLimit": 2000,
+                            "dailyTransactionLimit": 6000
+                        },
+                        "noKyc": {
+                            "minSingleTransactionLimit": 0.05,
+                            "maxSingleTransactionLimit": 25,
+                            "dailyTransactionLimit": 25,
+                            "maxLifetimeLimit": 25
+                        }
+                    }
                 },
                 ...
             ],
