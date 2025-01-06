@@ -3,8 +3,20 @@ title: 'API Examples'
 description: 'API Samples for interacting with Onboard Connect'
 ---
 
+## Base URL
 
-## Trade options
+<CodeGroup>
+            ```bash Staging
+            https://external.dev.onboardpay.co
+            ```
+            ```bash Production
+            https://api-3p.onboard.xyz
+            ```
+        </CodeGroup>
+
+## List of endpoints
+
+### Trade options
 
 This endpoint provides a list of supported fiat currencies, blockchain networks, payment channels, and transaction limits supported by Onboard. users to configure their trades.
 
@@ -138,7 +150,7 @@ This endpoint provides a list of supported fiat currencies, blockchain networks,
     </Accordion>
 </AccordionGroup>
 
-### Explanation of key properties
+#### Explanation of key properties
 
 <Tabs>
     <Tab title="fiats">
@@ -175,15 +187,15 @@ This endpoint provides a list of supported fiat currencies, blockchain networks,
     </Tab>
 </Tabs>
 
-## Get trade URL
+### Get trade URL
 
 Returns the trade URL for the paramaters provided. The URL retuned in the response can then be used in a browser / web view to start an ONRAMP / OFFRAMP
 
 <AccordionGroup>
     <Accordion title="Sample Parameters">
         ```bash URL
-GET https://external.dev.onboardpay.co/exchange/api/orders/trade-url&apiKey=onb_test_f284e796ffe4ae3426bddd6f05f098cf&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
-```
+        GET /exchange/api/orders/trade-url&apiKey=onb_test_f284e796ffe4ae3426bddd6f05f098cf&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
+        ```
     </Accordion>
     <Accordion title="Sample Response">
         ```json Response
@@ -197,7 +209,7 @@ GET https://external.dev.onboardpay.co/exchange/api/orders/trade-url&apiKey=onb_
 See [here](/onboard-exchange/connect/query-parameters) for a full list of parameters that can be used in the URL.
 
 
-## Start trade
+### Start trade
 
 This endpoint can be used in place of `Get Trade URL`, which returns the trade url in JSON. Instead, the `Start trade` endpoint automatically resolves to trade URL. This endpoint is best used to initiate trades within a browser or webview.
 
@@ -212,7 +224,7 @@ This endpoint can be used in place of `Get Trade URL`, which returns the trade u
 
 See [here](/onboard-exchange/connect/query-parameters) for a full list of parameters that can be used in the URL.
 
-### Sample mobile app integration
+#### Sample mobile app integration
         For mobile apps, the redirect link can be used within an embedded browser or webview component.
 
         <AccordionGroup>
@@ -329,7 +341,7 @@ See [here](/onboard-exchange/connect/query-parameters) for a full list of parame
             </Accordion>
         </AccordionGroup>
 
-## Get an order's current price
+### Get an order's current price
 
 <AccordionGroup>
     <Accordion title="Sample Parameters">
