@@ -44,6 +44,12 @@
       "name": "Community",
       "icon": "slack",
       "url": "https://linktr.ee/onboardcommunity"
+    },
+    {
+      "name": "API Reference",
+      "icon": "square-terminal",
+      "url": "/public-api-reference",
+      "openapi": "https://s3.us-west-2.amazonaws.com/uploads-staging.onboard.xyz/external-gateway.json"
     }
   ],
   "topAnchor": {
