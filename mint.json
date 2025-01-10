@@ -33,9 +33,8 @@
     {
       "name": "API Reference",
       "url": "/api-reference",
-      "openapi": "https://s3.us-west-2.amazonaws.com/uploads-staging.onboard.xyz/external-gateway.json"
+      "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json"
     }
-
   ],
   "primaryTab": {
       "name": "Onboard Protocol"
