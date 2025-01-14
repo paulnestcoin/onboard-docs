@@ -6,6 +6,7 @@
     "light": "/logo/new-logo.svg"
   },
   "favicon": "/favicon.svg",
+  "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json",
   "colors": {
     "primary": "#5723f4",
     "light": "#00cfff",
@@ -44,12 +45,6 @@
       "name": "Community",
       "icon": "slack",
       "url": "https://linktr.ee/onboardcommunity"
-    },
-    {
-      "name": "API Reference",
-      "url": "/api-reference",
-      "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json",
-      "icon": "square-terminal"
     }
   ],
   "topAnchor": {
@@ -153,6 +148,10 @@
         "onboard-exchange/supported-networks-tokens",
         "onboard-exchange/supported-currencies-payment-channels"
       ]
+    },
+    {
+      "group": "Onboard API Reference",
+      "pages": ["exchange-external-api/fetch-trade-url", "exchange-external-api/get-cex-profile"]
     }
   ],
   "footerSocials": {
