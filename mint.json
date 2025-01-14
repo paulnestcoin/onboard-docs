@@ -29,11 +29,6 @@
     {
       "name": "Onboard Exchange",
       "url": "onboard-exchange"
-    },
-    {
-      "name": "API Reference",
-      "url": "/api-reference",
-      "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json"
     }
   ],
   "primaryTab": {
@@ -49,6 +44,12 @@
       "name": "Community",
       "icon": "slack",
       "url": "https://linktr.ee/onboardcommunity"
+    },
+    {
+      "name": "API Reference",
+      "url": "/api-reference",
+      "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json",
+      "icon": "square-terminal"
     }
   ],
   "topAnchor": {
