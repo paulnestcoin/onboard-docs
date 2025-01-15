@@ -19,7 +19,7 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:engineering@onboard.xyz"
+      "url": "mailto:nestechops@nestcoin.com"
     }
   ],
   "topbarCtaButton": {
@@ -28,18 +28,16 @@
   },
   "tabs": [
     {
-      "name": "Exchange",
-      "icon": "arrow-right-arrow-left",
+      "name": "💱 Exchange",
       "url": "onboard-exchange"
     },
     {
-      "name": "API Reference",
-      "icon": "code",
+      "name": "🛠️ API Reference",
       "url": "api-reference"
     }
   ],
   "primaryTab": {
-      "name": "Protocol"
+      "name": "🔐 Protocol"
   },
   "anchors": [
     {
@@ -54,7 +52,7 @@
     }
   ],
   "topAnchor": {
-    "name": "Protocol"
+    "name": "🔐 Protocol"
   },
   "navigation": [
     {
