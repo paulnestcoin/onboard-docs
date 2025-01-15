@@ -1,0 +1,16 @@
+---
+title: 'Authentication'
+---
+
+To interact with the Onboard Connect API, clients must authenticate using either an `x-auth-token` or, in some cases, an API key.
+
+## Authentication steps
+
+1. **Obtain credentials:** Retrieve your API key from the Business Dashboard after completing the onboarding process. See the [Getting started](/onboard-exchange/connect/quick-start-guide.mdx) guide for instructions.
+2. **Include authentication details:** Depending on the endpoint, add either of the following to your API requests:
+    - `x-auth-token`: Required in the request header for authentication.
+    - API key: Some endpoints require the public API key to be included as a query parameter to identify your integration.
+
+<Warning>
+**Unauthorized Requests:** Endpoints that require authentication will return a 401 Unauthorized status code for missing or invalid credentials.
+</Warning>
