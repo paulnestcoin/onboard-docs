@@ -6,7 +6,7 @@
     "light": "/logo/new-logo.svg"
   },
   "favicon": "/favicon.svg",
-  "openapi": "https://resources.nestechops.com/openapi/main/onboard/external-gateway.json",
+  "openapi": "https://resources.nestechops.com/openapi/dev/onboard/external-gateway.json",
   "colors": {
     "primary": "#5723f4",
     "light": "#00cfff",
