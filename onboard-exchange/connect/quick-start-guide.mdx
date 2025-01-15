@@ -1,13 +1,15 @@
 ---
-title: 'Quick Start Integration'
+title: 'Quick Start Guide'
 description: 'Get up & running with Onboard Connect'
 ---
 
-In this quickstart, you'll learn how to integrate your Web3 wallet or dApp with Onboard Connect to provide easy and reliable onramps and offramps to your users.
+In this quickstart, you'll learn how to get started with Onboard Connect, in order to provide easy and reliable onramps and offramps to your users on your dApp or wallet.
 
 <Tip>
-**In a nutshell** <br/><br/>
-Connect helps you initiate an on/offramp on your app by redirecting your user to a trade URL embedded with your API key and trading parameters.
+**In a nutshell**<br/><br/>
+Onboard Connect offers two integration options:<br/>
+1. **Low-code integration**: Use a hosted widget for quick and easy implementation.<br/>
+2. **Native APIs**: Build deeper, customized integrations tailored to your app’s requirements.
 </Tip>
 
 ## Getting Started
@@ -26,35 +28,16 @@ Connect helps you initiate an on/offramp on your app by redirecting your user to
 
     You'll also get access to a [sandbox](https://dev.business.onboard.xyz) where you can setup and test your integration in a development environment. 
   </Step>
+  <Step title="Choose Your Integration Path">
+    Decide between the low-code solution for quick deployment, or the Native API integration for more flexibility and control.
+    
+    Both options require your API key for authentication.
+  </Step>
   <Step title="Obtain your API Key">
-    Log in to the Business Dashboard to [generate & retrieve your API key](https://business.onboard.xyz/api-keys). This API key is a required parameter within the redirect link used to initiate transactions.
+    Log in to the Business Dashboard to [generate & retrieve your API key](https://business.onboard.xyz/api-keys). This key is essential for accessing both the low-code widget and native API endpoints.
 
     <Frame>
         <img src="https://i.imgur.com/m14u5Bx.png" />
     </Frame>
   </Step>
-  <Step title="Use in your app">
-    To integrate Connect within your app, all you need is a trade URL, where your users are redirected to to initiate their order.
-
-    The trade URL can be retrieved in two ways:
-
-    1. By sending a GET request to the [Get trade URL](/onboard-exchange/connect/api-examples#get-trade-url) endpoint, which returns the trade URL as a JSON response.
-
-    2. Calling the [Start trade URL](/onboard-exchange/connect/api-examples#start-trade) endpoint directly, which resolves to the trade URL. This is suitable for initating trades in a browser or webview.
-
-    Both of these endpoints require the following key parameters:
-
-    - `<YOUR_API_KEY>`: Replace this placeholder with your actual API key obtained from the Business Dashboard.
-    - `product=web3`: This specifies the product type (web3 in this case).
-    - `<TRADE_QUERY_PARAMETERS>`: These are a set of required & optional parameters that allow you to control the onramp and offramp experience for your users. You'll find details about these parameters in the section [below](#query-parameters).
-    
-    If all the required parameters in the trade URL are provided, the user is able to login and proceed with their trade on Onboard.
-    
-  </Step>
 </Steps>
-
-## What's Next? 
-
-1. Explore the [query parameters](/onboard-exchange/connect/query-parameters) that allow you to customize your users' trading experience when using Connect.
-2. Explore the [key API endpoints](/onboard-exchange/connect/api-examples) you'll need to initiate trades for your users.
-3. Learn how your end-user experiences the on/offramp flow on Exchange (coming soon). 

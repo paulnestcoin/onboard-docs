@@ -1,0 +1,34 @@
+---
+title: 'Integration Essentials'
+description: 'Embed on/offramp functionality into your app using the low-code solution.'
+---
+
+Onboard Connect provides a simple way to integrate on/offramps with minimal development effort through a hosted widget.
+
+## How It Works
+Redirect users to a trade URL, where they can initiate and complete their transactions.
+
+You can generate the trade URL in two ways:
+
+1. **Retrieve the URL via API:** Use the [Get trade URL](/onboard-exchange/connect/api-examples#get-trade-url) endpoint to receive a trade URL in JSON format.
+2. **Direct Resolution:** Call the [Start trade URL](/onboard-exchange/connect/api-examples#start-trade) endpoint, which directly resolves to the trade URL. This is suitable for initating trades via a browser or webview.
+
+Both methods require:
+
+- `<YOUR_API_KEY>`: Your API key from the Business Dashboard.
+- `product=web3`: Specifies the Web3 product type.
+- `<TRADE_QUERY_PARAMETERS>`: Customizable parameters that allow you to control the onramp and offramp experience for your users. You'll find details about these parameters in the section [below](#query-parameters).
+
+## When to Use Low-Code Integration
+- Rapid deployment without heavy development.
+- Focus on a hosted, pre-built solution.
+- No need for complex workflows.
+
+## Exploring Native APIs
+For advanced use cases, such as embedding custom flows or deeper integration with your app, explore the [Onboard Connect Native APIs](/api-reference). These provide programmatic control over trade initiation, user management, and offer retrieval, tailored to your specific requirements.
+
+## What's Next?
+
+1. Explore the [query parameters](/onboard-exchange/connect/query-parameters) that allow you to customize your users' trading experience when using Connect's low-code integration.
+2. Explore the [key endpoints](/onboard-exchange/connect/api-examples) you'll need to initiate trades using Connect.
+3. Learn how your end-user experiences the on/offramp flow on Exchange (coming soon). 
