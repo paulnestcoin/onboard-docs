@@ -1,0 +1,61 @@
+---
+title: 'How Exchange Works'
+---
+
+Onboard Exchange enables seamless fiat-to-crypto (onramp) and crypto-to-fiat (offramp) transactions.
+
+Compatible with any EVM-compatible dApps or wallets, Exchange allows anyone get onchain in less than 3 minutes, supporting micro-transactions of as little as $0.5 at near zero-fees
+
+Let's explore how an end user experiences an Onboard trade, from start-to-finish.
+
+## Transaction lifecycle
+
+<Tabs>
+  <Tab title="Onramp (cash to crypto)">
+    <Steps>
+        <Step title="Start in Your dApp or Wallet">
+          Alice, a user in Kenya, wants to purchase USDC to deposit into a DeFi protocol. She opens her Web3 wallet (integrated with Onboard) and selects the **Buy Crypto** option.
+        </Step>
+        <Step title="Select offer">
+          Alice inputs her desired amount (e.g., 5 USDC) and chooses her fiat payment method (M-PESA). Her wallet connects to Onboard, which either:
+          
+          - Matches her with the best available offer for her amount and trading pair.
+          - Or shows a list of offers, sorted by rate, availability, and completion time.
+          
+          Alice selects Bob’s offer, which she believes has the best rate.
+        </Step>
+        <Step title="Initiate transaction">
+          Alice confirms her wallet address and the transaction details. The order is initiated, and Bob’s 5 USDC is locked securely in Onboard’s escrow. 
+        </Step>
+        <Step title="Make payment">
+          Alice views Bob’s payment instructions on-screen, and via her M-PESA app, transfers the equivalent amount in Kenyan Shillings (KES) to Bob's account.
+        </Step>
+        <Step title="Crypto released">
+          Once Bob confirms receipt of the KES, Onboard releases the 5 USDC from escrow directly to Alice’s wallet. Alice is notified that her transaction is complete.
+        </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Offramp (crypto to cash)">
+    <Steps>
+        <Step title="Start in Your dApp or Wallet">
+            Let's assume Alice has earned USDC in her wallet (integrated with Onboard) and now wants to withdraw it as KES for daily expenses. She selects the Sell Crypto option.
+        </Step>
+        <Step title="Select offer">
+          Alice enters the amount she wants to sell (e.g., 10 USDC) and her preferred fiat payout method (M-PESA). Onboard matches her with a best offer, or shows a list of offers where merchants are buying USDC for KES. Alice selects an offer from Bob, who supports fast payouts.
+        </Step>
+        <Step title="Initiate transaction">
+          Alice initiates the order, and approves for the USDC to be locked in to Onboard’s secure escrow via her wallet.
+        </Step>
+        <Step title="Receive funds">
+          Bob deposits the equivalent amount in KES into Alice’s M-PESA account. Alice confirms receipt of the payment.
+        </Step>
+        <Step title="Transaction complete">
+          Once Alice confirms receipt of funds, Onboard releases the USDC from escrow to Bob. Both parties are notified, and the transaction is marked complete.
+        </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Process flow
+
+- Diagram

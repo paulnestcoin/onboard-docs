@@ -133,7 +133,8 @@
       "group": "Welcome",
       "pages": [
         "onboard-exchange/introduction",
-        "onboard-exchange/need-for-exchange"
+        "onboard-exchange/need-for-exchange",
+        "onboard-exchange/how-exchange-works"
       ]
     },
     {
