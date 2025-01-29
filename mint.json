@@ -173,9 +173,7 @@
         {
           "group": "Trade Options",
           "pages": [
-            "api-reference/onboard-connect/trade-options/onboard-trade-options-configurations",
-            "api-reference/onboard-connect/trade-options/fetch-trade-url",
-            "api-reference/onboard-connect/trade-options/get-best-price-for-order"
+            "api-reference/onboard-connect/trade-options/onboard-trade-options-configurations"
           ]
         },
         {
@@ -189,9 +187,13 @@
         {
           "group": "Orders",
           "pages": [
+            "api-reference/onboard-connect/orders/fetch-trade-url",
             "api-reference/onboard-connect/orders/start-a-trade",
+            "api-reference/onboard-connect/orders/initiate-onramp-order",
+            "api-reference/onboard-connect/orders/initiate-offramp-order",
             "api-reference/onboard-connect/orders/retrieve-user-orders",
-            "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id"
+            "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id",
+            "api-reference/onboard-connect/orders/get-best-price-for-order"
           ]
         },
         {

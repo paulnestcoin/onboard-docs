@@ -1,6 +1,14 @@
 ---
-title: 'Initiate Order'
+title: 'Start trade'
 openapi: get /exchange/orders/trade
 ---
 
-Initiates a trade order directly via the API, removing the need for redirect-based workflows. This endpoint is ideal for dApps integrating Onboard Connect natively.
+This endpoint is ideal for low-code integrations, and can be used in place of [`Fetch Trade URL`](/api-reference/onboard-connect/orders/fetch-trade-url), which returns the trade url in JSON.
+
+Instead, the `Start trade` endpoint automatically resolves to the trade URL, and is best used to initiate trades within a browser or webview.
+
+
+To initiate orders natively via APIs, use:
+
+- [/transactions/v2/onramp/initiate](/api-reference/onboard-connect/orders/initiate-onramp-order) for onramp transactions
+- [/transactions/v2/offramp/initiate]((/api-reference/onboard-connect/orders/initiate-offramp-order)) for offramp transactions
