@@ -164,12 +164,7 @@
       "group": "Connect APIs",
       "pages": [
         "api-reference/onboard-connect/introduction",
-        "api-reference/onboard-connect/authentication"
-      ]
-    },
-    {
-      "group": "Connect API Endpoints",
-      "pages": [
+        "api-reference/onboard-connect/authentication",
         {
           "group": "Trade Options",
           "pages": [
