@@ -2,15 +2,98 @@
 title: 'Authentication'
 ---
 
-To interact with the Onboard Connect API, clients must authenticate using either an `x-auth-token` or, in some cases, an API key.
+## Overview
 
-## Authentication steps
+To interact with the Onboard Connect API, 3rd party clients must authenticate using one of the following methods:
 
-1. **Obtain credentials:** Retrieve your API key from the Business Dashboard after completing the onboarding process. See the [Getting started](/onboard-exchange/connect/quick-start-guide.mdx) guide for instructions.
-2. **Include authentication details:** Depending on the endpoint, add either of the following to your API requests:
-    - `x-auth-token`: Required in the request header for authentication.
-    - API key: Some endpoints require the public API key to be included as a query parameter to identify your integration.
+- **Session-based authentication (`x-auth-token`)** - Used for requests requiring an authenticated user session.
+- **API Key authentication (`x-api-key`)** - Used to identify your 3rd party application.
+- **HMAC Signature authentication** - Required for more sensitive endpoints (e.g., user creation), ensuring request integrity.
 
+<Tip>
+Check the specific endpoint documentation to determine which authentication method is required.
+</Tip>
+
+## Authentication methods
+
+<AccordionGroup>
+    <Accordion title="Session-Based Authentication">
+        Used for endpoints requiring an authenticated user session.
+
+        Steps:
+        Obtain an `x-auth-token` after completing user authentication (e.g., OTP login).
+
+        Include this token in the request headers:
+
+        ```http
+        Authorization: Bearer <x-auth-token>
+        ```
+
+        **Example Request:**
+        ```http
+        GET /users/me
+        Authorization: Bearer <x-auth-token>
+        ```
+    </Accordion>
+    <Accordion title="API Key Authentication">
+        Some endpoints require your API key to identify your application as the requesting 3rd party client.
+
+        Steps:
+        1. [Retrieve your API key](/onboard-exchange/connect/quick-start-guide) from the Business Dashboard after onboarding.
+        2. Include the API key in either:
+
+        <CodeGroup>
+            ```http Request Headers
+            x-api-key: <your-api-key>
+            ```
+
+            ```http URL Query Parameter
+            GET /exchange/api/orders/trade-url&apiKey=<your-api-key>&product=web3&tradeType=sell&fiat=NGN&token=USDT&tokenAmount=1&networkId=bsc_testnet&autoselect=true
+            ```
+        </CodeGroup>
+
+        <Note> Some endpoints require `x-api-key` while others do not. Check the endpoint's documentation to confirm.</Note>
+    </Accordion>
+    <Accordion title="HMAC Signature Authentication">
+        Certain sensitive endpoints, such as user creation, require an HMAC SHA-256 signature for verification. Requests without a valid signature will be rejected.
+
+        ### Required Headers:
+        |Header	| Description |
+        |-----------|----------|
+        |x-api-key|	Found in the Business Dashboard|
+        |x-api-secret|	Secret key configured in the Business Dashboard|
+        |x-signature|	HMAC-SHA256 signature of the request body|
+        |x-timestamp|	Unix timestamp (seconds) when the signature was generated|
+
+        ### How to generate `x-signature`
+        The signature is generated using HMAC SHA-256 with the API secret as the key.
+
+        **Example (JavaScript):**
+        ```javascript
+        const crypto = require('crypto');
+
+        const timestamp = Math.ceil(Date.now() / 1000);
+        const apiSecret = "Onboard API secret"; // Found in the Business Dashboard
+        const requestBody = JSON.stringify({ /* your request body */ });
+
+        const params = [`t=${timestamp}`, requestBody].join('&');
+        const signature = crypto.createHmac('sha256', apiSecret).update(params).digest('hex');
+
+        console.log(`x-signature: ${signature}`);
+        ```
+
+        ### Making a secure API request
+        Include the following headers in your request:
+
+        ```http
+        x-api-key: <your-api-key>
+        x-api-secret: <your-api-secret>
+        x-signature: <computed-signature>
+        x-timestamp: <epoch-timestamp>
+        ```
+        <Note>`x-timestamp` must be within 30 seconds of the current time. Older timestamps will result in a 403 Forbidden error.</Note>
+    </Accordion>
+</AccordionGroup>
 <Warning>
-**Unauthorized Requests:** Endpoints that require authentication will return a 401 Unauthorized status code for missing or invalid credentials.
+    **Unauthorized Requests:** Endpoints that require authentication will return a 401 Unauthorized status code for missing or invalid credentials.
 </Warning>

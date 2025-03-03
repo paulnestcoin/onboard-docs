@@ -161,46 +161,61 @@
       ]
     },
     {
-      "group": "Connect APIs",
+      "group": "Onboard Connect APIs",
       "pages": [
         "api-reference/onboard-connect/introduction",
         "api-reference/onboard-connect/authentication",
         {
-          "group": "Trade Options",
+          "group": "User Endpoints",
           "pages": [
-            "api-reference/onboard-connect/trade-options/onboard-trade-options-configurations",
-            "api-reference/onboard-connect/trade-options/get-best-price-for-order"
-          ]
-        },
-        {
-          "group": "Offers",
-          "pages": [
-            "api-reference/onboard-connect/offers/get-best-offer-for-trade-parameters",
-            "api-reference/onboard-connect/offers/find-matching-offer-for-trading-pair",
-            "api-reference/onboard-connect/offers/get-weighted-rates"
-          ]
-        },
-        {
-          "group": "Orders",
-          "pages": [
-            "api-reference/onboard-connect/orders/fetch-trade-url",
-            "api-reference/onboard-connect/orders/start-a-trade",
-            "api-reference/onboard-connect/orders/initiate-onramp-order",
-            "api-reference/onboard-connect/orders/initiate-offramp-order",
-            "api-reference/onboard-connect/orders/retrieve-user-orders",
-            "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id"
-          ]
-        },
-        {
-          "group": "Users",
-          "pages": [
-            "api-reference/onboard-connect/users/provide-otp-for-user",
+            {
+              "group": "User Creation via API",
+              "pages": [
+                "api-reference/onboard-connect/users/api-user-creation/intro",
+                "api-reference/onboard-connect/users/api-user-creation/initiate-user-authentication",
+                "api-reference/onboard-connect/users/api-user-creation/verify-user-auth-otp",
+                "api-reference/onboard-connect/users/api-user-creation/resend-user-auth-otp",
+                "api-reference/onboard-connect/users/api-user-creation/refresh-token"
+              ]
+            },
             "api-reference/onboard-connect/users/get-user-by-authorization-token",
-            "api-reference/onboard-connect/users/update-user-personal-information"
+            "api-reference/onboard-connect/users/update-user-personal-information",
+            "api-reference/onboard-connect/users/generate-otp-for-2fa-actions"
           ]
         },
         {
-          "group": "Business Profile",
+          "group": "Trading Endpoints",
+          "pages": [
+            {
+              "group": "Trade Options",
+              "pages": [
+                "api-reference/onboard-connect/trade-options/onboard-trade-options-configurations",
+                "api-reference/onboard-connect/trade-options/get-best-price-for-order"
+              ]
+            },
+            {
+              "group": "Offers",
+              "pages": [
+                "api-reference/onboard-connect/offers/get-best-offer-for-trade-parameters",
+                "api-reference/onboard-connect/offers/find-matching-offer-for-trading-pair",
+                "api-reference/onboard-connect/offers/get-weighted-rates"
+              ]
+            },
+            {
+              "group": "Orders",
+              "pages": [
+                "api-reference/onboard-connect/orders/fetch-trade-url",
+                "api-reference/onboard-connect/orders/start-a-trade",
+                "api-reference/onboard-connect/orders/initiate-onramp-order",
+                "api-reference/onboard-connect/orders/initiate-offramp-order",
+                "api-reference/onboard-connect/orders/retrieve-user-orders",
+                "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Business Profile Endpoints",
           "pages": [
             "api-reference/onboard-connect/profile/get-cex-profile"
           ]

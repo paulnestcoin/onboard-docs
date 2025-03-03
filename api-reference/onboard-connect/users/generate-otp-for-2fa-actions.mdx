@@ -1,0 +1,13 @@
+---
+title: 'Generate OTP for 2FA actions'
+openapi: get /users/me/send-otp
+---
+
+Generates a one-time password (OTP) for actions requiring two-factor authentication (2FA), such as:
+
+- Adding or updating a payment method
+- Updating account security settings (e.g. enabling passkeys & TOTP)
+
+This OTP does not grant authentication access but is instead used to verify sensitive operations within an authenticated session.
+
+<Note>For OTP used for authentication (sign-in/sign-up), refer to the [`Verify auth OTP`](verify-user-auth-otp) endpoint.</Note>
