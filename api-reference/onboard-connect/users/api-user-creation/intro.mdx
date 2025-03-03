@@ -9,16 +9,16 @@ User creation via API follows a simple flow:
 
 <Steps>
     <Step title="Initiate authentication">
-        Send a request via the [**Initiate**](initiate-user-authentication) endpoint to authenticate a user. If the provided email does not exist, a new Onboard profile is automatically created.
+        Send a request via the [**Initiate**](/api-reference/onboard-connect/users/api-user-creation/initiate-user-authentication) endpoint to authenticate a user. If the provided email does not exist, a new Onboard profile is automatically created.
     </Step>
     <Step title="OTP verification">
-        The user receives an OTP via email and must verify it using the [**Verify Auth OTP**](verify-user-auth-otp) endpoint to complete authentication.
+        The user receives an OTP via email and must verify it using the [**Verify Auth OTP**](/api-reference/onboard-connect/users/api-user-creation/verify-user-auth-otp) endpoint to complete authentication.
     </Step>
     <Step title="Resend OTP (if needed)">
-        If the OTP is not received or has expired, trigger a resend via the [**Resend Auth OTP**](resend-user-auth-otp) endpoint.
+        If the OTP is not received or has expired, trigger a resend via the [**Resend Auth OTP**](/api-reference/onboard-connect/users/api-user-creation/resend-user-auth-otp) endpoint.
     </Step>
     <Step title="Refresh token">
-        Once authenticated, refresh tokens as needed using the [**Refresh Token**](refresh-oauth-token) endpoint to maintain access without re-authentication.
+        Once authenticated, refresh tokens as needed using the [**Refresh Token**](/api-reference/onboard-connect/users/api-user-creation/refresh-token) endpoint to maintain access without re-authentication.
     </Step>
 </Steps>
 
