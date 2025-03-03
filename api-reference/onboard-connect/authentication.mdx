@@ -61,12 +61,11 @@ Check the specific endpoint documentation to determine which authentication meth
         |Header	| Description |
         |-----------|----------|
         |x-api-key|	Found in the Business Dashboard|
-        |x-api-secret|	Secret key configured in the Business Dashboard|
         |x-signature|	HMAC-SHA256 signature of the request body|
         |x-timestamp|	Unix timestamp (seconds) when the signature was generated|
 
         ### How to generate `x-signature`
-        The signature is generated using HMAC SHA-256 with the API secret as the key.
+        The signature is generated using HMAC SHA-256 with your API secret as the key.
 
         **Example (JavaScript):**
         ```javascript
@@ -87,7 +86,6 @@ Check the specific endpoint documentation to determine which authentication meth
 
         ```http
         x-api-key: <your-api-key>
-        x-api-secret: <your-api-secret>
         x-signature: <computed-signature>
         x-timestamp: <epoch-timestamp>
         ```
