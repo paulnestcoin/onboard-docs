@@ -208,6 +208,8 @@
                 "api-reference/onboard-connect/orders/start-a-trade",
                 "api-reference/onboard-connect/orders/initiate-onramp-order",
                 "api-reference/onboard-connect/orders/initiate-offramp-order",
+                "api-reference/onboard-connect/orders/mark-order-as-paid",
+                "api-reference/onboard-connect/orders/cancel-order",
                 "api-reference/onboard-connect/orders/retrieve-user-orders",
                 "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id"
               ]
