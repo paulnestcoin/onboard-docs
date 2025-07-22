@@ -212,6 +212,7 @@
                 "api-reference/onboard-connect/orders/cancel-order",
                 "api-reference/onboard-connect/orders/order-contact",
                 "api-reference/onboard-connect/orders/retrieve-user-orders",
+                "api-reference/onboard-connect/orders/retrieve-order-by-id",
                 "api-reference/onboard-connect/orders/retrieve-order-by-cex-order-id"
               ]
             }
